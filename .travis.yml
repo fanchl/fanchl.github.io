@@ -1,0 +1,32 @@
+os: osx
+language: node_js 
+node_js:
+  - 10  # 使用 nodejs LTS v10
+branches:
+  only:
+    - source # 只监控 source 的 branch
+cache:
+  directories:
+    - node_modules # 缓存 node_modules 加快构建速度
+before_script: ## 根据你所用的主题和自定义的不同，这里会有所不同
+  - npm install -g hexo-cli # 在 CI 环境内安装 Hexo
+  # - mkdir themes # 由于我们没有将 themes/ 上传，所以我们需要新建一个
+  # - cd themes 
+  # - git clone https://github.com/SukkaW/hexo-theme-suka.git suka #从 Github 上拉取 Suka 主题
+  # - cd suka
+  # - npm install --production # 安装 Suka 主题的依赖
+  # - cd ../.. # 返回站点根目录
+  # - cp _config.theme.yml themes/suka/_config.yml # 将主题的配置文件放回原处    
+  - npm install # 在根目录安装站点需要的依赖 
+script: 
+  - hexo generate # generate static files
+deploy: # 根据个人情况，这里会有所不同
+  provider: pages
+  skip_cleanup: true # 构建完成后不清除
+  token: $GH_TOKEN # 你刚刚设置的 token
+  keep_history: true # 保存历史
+  # fqdn: blog.ne0ng.page # 自定义域名，使用 username.github.io 可删除
+  on:
+    branch: source # hexo 站点源文件所在的 branch
+  local_dir: public 
+  target_branch: master # 存放生成站点文件的 branch，使用 username.github.io 必须是 master
