@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"fanchl.github.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"fanchl.github.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="日拱一卒，功不唐捐。">
@@ -103,6 +103,7 @@
 
   <div class="site-nav-right">
     <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -137,11 +138,38 @@
     <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
 
   </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 </nav>
 
 
 
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
 
 </div>
     </header>
@@ -164,7 +192,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2020/12/28/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
+    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2021/05/14/Java-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -178,7 +206,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/12/28/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" class="post-title-link" itemprop="url">机器学习</a>
+            <a href="/2021/05/14/Java-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" class="post-title-link" itemprop="url">Java 正则表达式</a>
         </h2>
 
         <div class="post-meta">
@@ -188,7 +216,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-12-28 00:00:00" itemprop="dateCreated datePublished" datetime="2020-12-28T00:00:00+08:00">2020-12-28</time>
+              <time title="创建时间：2021-05-14 10:50:33" itemprop="dateCreated datePublished" datetime="2021-05-14T10:50:33+08:00">2021-05-14</time>
             </span>
 
           
@@ -202,13 +230,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Notion中记录的一些关于机器学习/深度学习的笔记。</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.notion.so/fanchl/f27f8ec5166c40de8b36a4fde9969049">Notion链接</a></li>
-</ul>
+          <h1 id="Class-Pattern"><a href="#Class-Pattern" class="headerlink" title="Class Pattern"></a>Class Pattern</h1><h2 id="Pattern-类-与-Matcher-类"><a href="#Pattern-类-与-Matcher-类" class="headerlink" title="Pattern 类 与 Matcher 类"></a>Pattern 类 与 Matcher 类</h2><h3 id="一、捕获组的概念"><a href="#一、捕获组的概念" class="headerlink" title="一、捕获组的概念"></a>一、捕获组的概念</h3><p>捕获组可以通过从左到右计算其开括号来编号，<strong>编号从 1 开始</strong>。例如，在表达式 ((A)(B(C))) 中，存在四个组：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">((A)(B(C)))</span><br><span class="line">(A)</span><br><span class="line">(B(C))</span><br><span class="line">(C)</span><br></pre></td></tr></table></figure>
+
+<p>组 0 代表整个表达式</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/12/28/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/#more" rel="contents">
+              <a class="btn" href="/2021/05/14/Java-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -232,7 +260,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2020/08/24/Numpy/">
+    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2021/04/21/SSH%E4%BA%92%E4%BF%A1%E6%9C%BA%E5%88%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -246,7 +274,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/08/24/Numpy/" class="post-title-link" itemprop="url">Numpy</a>
+            <a href="/2021/04/21/SSH%E4%BA%92%E4%BF%A1%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">SSH 互信机制</a>
         </h2>
 
         <div class="post-meta">
@@ -256,7 +284,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-08-24 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-24T00:00:00+08:00">2020-08-24</time>
+              <time title="创建时间：2021-04-21 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-21T00:00:00+08:00">2021-04-21</time>
             </span>
 
           
@@ -270,147 +298,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="array属性"><a href="#array属性" class="headerlink" title="array属性"></a>array属性</h2><h3 id="array-矩阵"><a href="#array-矩阵" class="headerlink" title="array 矩阵"></a>array 矩阵</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">array = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],[<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]])  <span class="comment">#列表转化为矩阵</span></span><br><span class="line"><span class="built_in">print</span>(array)</span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">array([[1, 2, 3],</span></span><br><span class="line"><span class="string">       [2, 3, 4]])</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/24/Numpy/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2020/08/03/PyTorch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="fanchl">
-      <meta itemprop="description" content="日拱一卒，功不唐捐。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="fanchl's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/08/03/PyTorch/" class="post-title-link" itemprop="url">PyTorch</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-08-03 00:00:00" itemprop="dateCreated datePublished" datetime="2020-08-03T00:00:00+08:00">2020-08-03</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="Torch-amp-Numpy"><a href="#Torch-amp-Numpy" class="headerlink" title="Torch &amp; Numpy"></a>Torch &amp; Numpy</h2><p>Torch 自称为神经网络界的 Numpy, 因为他能将 torch 产生的 tensor 放在 GPU 中加速运算</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/08/03/PyTorch/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2020/06/03/Sklearn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="fanchl">
-      <meta itemprop="description" content="日拱一卒，功不唐捐。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="fanchl's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/06/03/Sklearn/" class="post-title-link" itemprop="url">Sklearn</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-06-03 00:00:00" itemprop="dateCreated datePublished" datetime="2020-06-03T00:00:00+08:00">2020-06-03</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="confusion-matrix"><a href="#confusion-matrix" class="headerlink" title="confusion_matrix"></a>confusion_matrix</h2><ol>
-<li><p>概念</p>
-<p>混淆矩阵是机器学习中总结分类模型预测结果的情形分析表，以矩阵形式将数据集中的记录按照真实的类别与分类模型作出的分类判断两个标准进行汇总。</p>
-<img src="https://img-blog.csdn.net/20170814211735042?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbTBfMzgwNjE5Mjc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" style="zoom:50%;" />
-
-<p>灰色部分是与真实分类与预测分类结果相同，蓝色是分类错误的。</p>
-</li>
+          <h1 id="SSH-互信机制"><a href="#SSH-互信机制" class="headerlink" title="SSH 互信机制"></a>SSH 互信机制</h1><ol>
+<li><p>客户端</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span></span><br><span class="line">$ ssh-keygen -t rsa</span><br><span class="line">$ <span class="built_in">cd</span> .ssh/</span><br><span class="line">$ ls</span><br><span class="line"><span class="comment">## id_rsa  id_rsa.pub</span></span><br></pre></td></tr></table></figure></li>
+<li><p>服务器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> .ssh/</span><br><span class="line">$ vim authorized_keys</span><br><span class="line"><span class="comment">## 粘贴客户端的id_rsa.pub内容</span></span><br></pre></td></tr></table></figure></li>
 </ol>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/06/03/Sklearn/#more" rel="contents">
+              <a class="btn" href="/2021/04/21/SSH%E4%BA%92%E4%BF%A1%E6%9C%BA%E5%88%B6/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -434,7 +330,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2020/05/24/OpenCV/">
+    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2021/04/20/SSH%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -448,7 +344,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/24/OpenCV/" class="post-title-link" itemprop="url">OpenCV</a>
+            <a href="/2021/04/20/SSH%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/" class="post-title-link" itemprop="url">SSH 端口转发</a>
         </h2>
 
         <div class="post-meta">
@@ -458,7 +354,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-05-24 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-24T00:00:00+08:00">2020-05-24</time>
+              <time title="创建时间：2021-04-20 00:00:00" itemprop="dateCreated datePublished" datetime="2021-04-20T00:00:00+08:00">2021-04-20</time>
             </span>
 
           
@@ -472,14 +368,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="cv2-imread"><a href="#cv2-imread" class="headerlink" title="cv2.imread()"></a>cv2.imread()</h3><p><code>cv2.imread(filename[, flags]) </code></p>
-<p>第二个参数是要告诉函数应该如何读取这幅图片。</p>
-<p>• <code>cv2.IMREAD_COLOR</code>：读入一副彩色图像。图像的透明度会被忽略，这是默认参数。</p>
-<p>• <code>cv2.IMREAD_GRAYSCALE</code>：以灰度模式读入图像</p>
-<p>返回（高度，宽度，通道数）的np数组，可通过.shape查看</p>
+          <h1 id="SSH-端口转发"><a href="#SSH-端口转发" class="headerlink" title="SSH 端口转发"></a>SSH 端口转发</h1><h2 id="一、基本连接"><a href="#一、基本连接" class="headerlink" title="一、基本连接"></a>一、基本连接</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh username@hostname</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>执行命令、运行 SSH 客户端的主机，称为本地主机 Host A</li>
+<li>接收连接请求、运行 SSH 服务器的主机，称为远程主机 Host B</li>
+</ol>
+<p><code>username</code>是主机 B 上已登录的用户名， <code>hostname</code> 则是主机 B 的设备名、域名或 IP 等可以在网络（局域网或互联网）上定位的名称。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/24/OpenCV/#more" rel="contents">
+              <a class="btn" href="/2021/04/20/SSH%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -503,7 +401,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2020/05/24/Pandas/">
+    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2021/03/24/Java-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -517,7 +415,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/24/Pandas/" class="post-title-link" itemprop="url">Pandas</a>
+            <a href="/2021/03/24/Java-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Java 安装配置</a>
         </h2>
 
         <div class="post-meta">
@@ -527,7 +425,16 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-05-24 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-24T00:00:00+08:00">2020-05-24</time>
+              <time title="创建时间：2021-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-24T00:00:00+08:00">2021-03-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">配置</span></a>
+                </span>
             </span>
 
           
@@ -541,10 +448,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>如果用 python 的列表和字典来作比较, 那么可以说 Numpy 是列表形式的，没有数值标签，而 Pandas 就是字典形式。Pandas是基于Numpy构建的，让Numpy为中心的应用变得更加简单。</p>
+          <h1 id="Java-安装配置"><a href="#Java-安装配置" class="headerlink" title="Java 安装配置"></a>Java 安装配置</h1><h2 id="一、Mac-自带JRE"><a href="#一、Mac-自带JRE" class="headerlink" title="一、Mac 自带JRE"></a>一、Mac 自带JRE</h2><p>终端输入</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/05/24/Pandas/#more" rel="contents">
+              <a class="btn" href="/2021/03/24/Java-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -568,7 +475,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2017/05/24/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2021/03/24/Maven%20%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -582,7 +489,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2017/05/24/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+            <a href="/2021/03/24/Maven%20%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Maven 安装配置</a>
         </h2>
 
         <div class="post-meta">
@@ -592,7 +499,16 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2017-05-24 22:07:58" itemprop="dateCreated datePublished" datetime="2017-05-24T22:07:58+08:00">2017-05-24</time>
+              <time title="创建时间：2021-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-24T00:00:00+08:00">2021-03-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">配置</span></a>
+                </span>
             </span>
 
           
@@ -606,13 +522,394 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+          <h1 id="Maven-安装配置"><a href="#Maven-安装配置" class="headerlink" title="Maven 安装配置"></a>Maven 安装配置</h1><h2 id="一、下载-Maven"><a href="#一、下载-Maven" class="headerlink" title="一、下载 Maven"></a>一、下载 Maven</h2><p>首先从 Maven 官方地址：<a target="_blank" rel="noopener" href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a> 下载最新版本apache-maven-xxx-bin.tar.gz</p>
+<p>加下来将下载的文件解压到 /usr/local/maven 下。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2017/05/24/hello-world/#more" rel="contents">
+              <a class="btn" href="/2021/03/24/Maven%20%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2021/03/20/Jupyter-Notebook-%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="fanchl">
+      <meta itemprop="description" content="日拱一卒，功不唐捐。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fanchl's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/20/Jupyter-Notebook-%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="post-title-link" itemprop="url">Jupyter Notebook 服务器</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-20 09:47:17" itemprop="dateCreated datePublished" datetime="2021-03-20T09:47:17+08:00">2021-03-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">配置</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Jupyter-Notebook-服务器"><a href="#Jupyter-Notebook-服务器" class="headerlink" title="Jupyter Notebook 服务器"></a>Jupyter Notebook 服务器</h1><h2 id="1、-生成配置文件"><a href="#1、-生成配置文件" class="headerlink" title="1、 生成配置文件"></a>1、 生成配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">python</span><br><span class="line">&gt;&gt; from notebook.auth import passwd</span><br><span class="line">&gt;&gt; passwd()</span><br><span class="line">Enter password: </span><br><span class="line">Verify password: </span><br><span class="line"><span class="string">&#x27;sha1:673a8456a8e8:4377bd9ee8dc33d4cb5a2011f7a89643de15c11c&#x27;</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/20/Jupyter-Notebook-%E6%9C%8D%E5%8A%A1%E5%99%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2021/03/20/Jupyter-Notebook-%E9%80%89%E6%8B%A9Kernel/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="fanchl">
+      <meta itemprop="description" content="日拱一卒，功不唐捐。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fanchl's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/20/Jupyter-Notebook-%E9%80%89%E6%8B%A9Kernel/" class="post-title-link" itemprop="url">Jupyter Notebook 选择Kernel</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-20 09:43:59" itemprop="dateCreated datePublished" datetime="2021-03-20T09:43:59+08:00">2021-03-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="选择-Kernel"><a href="#选择-Kernel" class="headerlink" title="选择 Kernel"></a>选择 Kernel</h1><h2 id="一、创建对应-conda-环境的-kernel"><a href="#一、创建对应-conda-环境的-kernel" class="headerlink" title="一、创建对应 conda 环境的 kernel"></a>一、创建对应 conda 环境的 kernel</h2><h3 id="激活-conda-环境"><a href="#激活-conda-环境" class="headerlink" title="激活 conda 环境"></a>激活 conda 环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> activate 环境名称</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装-ipykernel"><a href="#安装-ipykernel" class="headerlink" title="安装 ipykernel"></a>安装 <code>ipykernel</code></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install ipykernel</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/20/Jupyter-Notebook-%E9%80%89%E6%8B%A9Kernel/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2021/03/16/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="fanchl">
+      <meta itemprop="description" content="日拱一卒，功不唐捐。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fanchl's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/03/16/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">服务器常用指令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-03-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-03-16T00:00:00+08:00">2021-03-16</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="服务器常用指令"><a href="#服务器常用指令" class="headerlink" title="服务器常用指令"></a>服务器常用指令</h1><p>Status: Linux</p>
+<p>查看系统信息</p>
+<p><code>uname -a</code></p>
+<p>查看centos版本</p>
+<p><code>cat /etc/redhat-release</code></p>
+<p>给普通用户添加sudo权限</p>
+<ul>
+<li><p>Ubuntu</p>
+<p><code>sudo usermod -aG sudo username</code></p>
+</li>
+<li><p>CentOS</p>
+<p><code>sudo usermod -aG wheel username</code></p>
+</li>
+</ul>
+<p>更改用户home目录</p>
+<ol>
+<li>在sudo用户shell下</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod -d `/usr/newfolder` -u `uid` `username`</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>uid</code>: 通过 <code>id username</code> 来获取</li>
+</ul>
+<ol start="2">
+<li>将原home目录下内容复制到新目录</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo cp -R `/origin/home/.` `/new/home`</span><br></pre></td></tr></table></figure>
+
+<p>实验室服务器登陆校园网</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -d <span class="string">&#x27;user=xxx&amp;pass=xxx&#x27;</span> <span class="string">&quot;http://10.3.8.211/login&quot;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2021/01/18/Vim%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="fanchl">
+      <meta itemprop="description" content="日拱一卒，功不唐捐。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fanchl's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/18/Vim%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Vim 配置</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-18 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-18T00:00:00+08:00">2021-01-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">配置</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Vim-配置"><a href="#Vim-配置" class="headerlink" title="Vim 配置"></a>Vim 配置</h1><p>Vim编辑器相关的所有功能开关都可以通过 <strong><code>.vimrc</code></strong> 文件进行设置。 </p>
+<p>**<code>.vimrc</code>**配置文件分系统配置和用户配置两种。</p>
+<ul>
+<li>系统vimrc配置文件存放在Vim的安装目录，默认路径为<code>/usr/share/vim/.vimrc</code>。可以使用命令<code>echo $VIM</code>来确定Vim的安装目录。</li>
+<li>用户vimrc文件，存放在用户主目录下<code>~/.vimrc</code>。可以使用命令<code>echo $HOME</code>确定用户主目录。</li>
+</ul>
+<p><em>注意</em>：用户配置文件优先于系统配置文件，Vim启动时会优先读取当前用户根目录下的**.vimrc**文件。所以与个人用户相关的个性化配置一般都放在<code>~/.vimrc</code>中。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/18/Vim%E9%85%8D%E7%BD%AE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2021/01/16/%E7%BB%99%E5%AE%B9%E5%99%A8%E5%AE%89%E8%A3%85SSH%E6%9C%8D%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="fanchl">
+      <meta itemprop="description" content="日拱一卒，功不唐捐。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fanchl's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/01/16/%E7%BB%99%E5%AE%B9%E5%99%A8%E5%AE%89%E8%A3%85SSH%E6%9C%8D%E5%8A%A1/" class="post-title-link" itemprop="url">给容器安装 SSH 服务</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-16T00:00:00+08:00">2021-01-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">配置</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="给容器安装-SSH-服务"><a href="#给容器安装-SSH-服务" class="headerlink" title="给容器安装 SSH 服务"></a>给容器安装 SSH 服务</h1><h2 id="启动-Container"><a href="#启动-Container" class="headerlink" title="启动 Container"></a>启动 Container</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it [containerID] /bin/bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/01/16/%E7%BB%99%E5%AE%B9%E5%99%A8%E5%AE%89%E8%A3%85SSH%E6%9C%8D%E5%8A%A1/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -634,6 +931,9 @@
 
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -698,13 +998,21 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">23</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">4</span>
-        <span class="site-state-item-name">标签</span>
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -781,6 +1089,10 @@
   
 
 
+
+
+  
+<script src="/js/local-search.js"></script>
 
 
 
