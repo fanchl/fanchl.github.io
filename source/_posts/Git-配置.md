@@ -6,8 +6,6 @@ tags:
 categories: 配置
 ---
 
-# Git 配置
-
 ## 配置信息位置
 
 `~/.gitconfig`

@@ -6,12 +6,13 @@ tags:
 categories: 配置
 ---
 
-# 环境配置 MacTex + VS Code
+## 环境配置 MacTex + VS Code
 
 1. 下载安装MacTex和VSCode
 
    ![%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%20MacTex%20+%20VS%20Code%20fb5f49e21c274303880bfca168d097cf/Untitled.png](https://i.loli.net/2021/05/16/lyGJSORTYKa6zbx.png)
    
+
 <!-- more -->
 
 2. 在VSCode内安装 LaTeX Workshop 插件

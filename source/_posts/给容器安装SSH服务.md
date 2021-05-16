@@ -8,8 +8,6 @@ tags:
 categories: 配置
 ---
 
-# 给容器安装 SSH 服务
-
 ## 启动 Container
 
 ```bash

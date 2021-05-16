@@ -7,8 +7,6 @@ tags:
 categories: 配置
 ---
 
-# Java 安装配置
-
 ## 一、Mac 自带JRE
 
 终端输入

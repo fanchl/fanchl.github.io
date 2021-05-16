@@ -7,8 +7,6 @@ tags:
 categories: 配置
 ---
 
-# Jupyter Notebook 服务器
-
 ## 1、 生成配置文件
 
 ```bash

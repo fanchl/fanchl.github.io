@@ -6,8 +6,6 @@ tags:
     - 远程连接
 ---
 
-# 选择 Kernel
-
 ## 一、创建对应 conda 环境的 kernel
 
 ### 激活 conda 环境
