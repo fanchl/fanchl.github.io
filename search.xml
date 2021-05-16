@@ -22,7 +22,7 @@
   <entry>
     <title>Bash 技巧</title>
     <url>/2020/12/27/Bash-%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<h1 id="Bash-技巧"><a href="#Bash-技巧" class="headerlink" title="Bash 技巧"></a>Bash 技巧</h1><h1 id="模式扩展"><a href="#模式扩展" class="headerlink" title="模式扩展"></a>模式扩展</h1><h2 id="子命令扩展"><a href="#子命令扩展" class="headerlink" title="子命令扩展"></a>子命令扩展</h2><ol>
+    <content><![CDATA[<h2 id="模式扩展"><a href="#模式扩展" class="headerlink" title="模式扩展"></a>模式扩展</h2><h3 id="子命令扩展"><a href="#子命令扩展" class="headerlink" title="子命令扩展"></a>子命令扩展</h3><ol>
 <li><p>$(…)可以扩展成另一个命令的运行结果，该命令的所有输出都会作为返回值。</p>
 <p>$(…)可以嵌套，比如$(ls $(pwd))</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> $(date)</span><br><span class="line">Tue Jan 28 00:01:13 CST 2020</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
@@ -33,7 +33,7 @@
 <li><p>还有另一种较老的语法，子命令放在反引号之中，也可以扩展成命令的运行结果。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> `date`</span><br><span class="line">Tue Jan 28 00:01:13 CST 2020</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h1 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h1><ol>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><ol>
 <li><p>环境变量</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">env</span><br><span class="line">printenv</span><br></pre></td></tr></table></figure>
 
@@ -65,7 +65,7 @@
 <p><code>set</code>命令可以显示所有变量（包括环境变量和自定义变量），以及所有的 Bash 函数。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">set</span></span><br></pre></td></tr></table></figure></li>
 </ol>
-<h2 id="创建变量"><a href="#创建变量" class="headerlink" title="创建变量"></a>创建变量</h2><p>用户创建变量的时候，变量名必须遵守下面的规则。</p>
+<h3 id="创建变量"><a href="#创建变量" class="headerlink" title="创建变量"></a>创建变量</h3><p>用户创建变量的时候，变量名必须遵守下面的规则。</p>
 <ul>
 <li>字母、数字和下划线字符组成。</li>
 <li>第一个字符必须是一个字母或一个下划线，不能是数字。</li>
@@ -79,12 +79,12 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">myvar=<span class="string">&quot;hello world&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>Bash 没有数据类型的概念，所有的变量值都是字符串。</p>
-<h2 id="读取变量"><a href="#读取变量" class="headerlink" title="读取变量"></a>读取变量</h2><p>读取变量的时候，直接在变量名前加上<code>$</code>就可以了。</p>
+<h3 id="读取变量"><a href="#读取变量" class="headerlink" title="读取变量"></a>读取变量</h3><p>读取变量的时候，直接在变量名前加上<code>$</code>就可以了。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ foo=bar</span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$foo</span></span><br><span class="line">bar</span><br></pre></td></tr></table></figure>
 
 <p>每当 Shell 看到以<code>$</code>开头的单词时，就会尝试读取这个变量名对应的值。</p>
 <p>如果变量不存在，Bash 不会报错，而会输出空字符。</p>
-<h2 id="删除变量"><a href="#删除变量" class="headerlink" title="删除变量"></a>删除变量</h2><p><code>unset</code>命令用来删除一个变量。</p>
+<h3 id="删除变量"><a href="#删除变量" class="headerlink" title="删除变量"></a>删除变量</h3><p><code>unset</code>命令用来删除一个变量。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">unset</span> NAME</span><br></pre></td></tr></table></figure>
 
 <p>这个命令不是很有用。因为不存在的 Bash 变量一律等于空字符串，所以即使<code>unset</code>命令删除了变量，还是可以读取这个变量，值为空字符串。</p>
@@ -92,7 +92,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ foo=<span class="string">&#x27;&#x27;</span></span><br><span class="line">$ foo=</span><br></pre></td></tr></table></figure>
 
 <p>上面两种写法，都是删除了变量<code>foo</code>。由于不存在的值默认为空字符串，所以后一种写法可以在等号右边不写任何值。</p>
-<h2 id="输出变量-export-命令"><a href="#输出变量-export-命令" class="headerlink" title="输出变量 export 命令"></a>输出变量 export 命令</h2><p>用户创建的变量仅可用于当前 Shell，子 Shell 默认读取不到父 Shell 定义的变量。为了把变量传递给子 Shell，需要使用<code>export</code>命令。<strong>这样输出的变量，对于子 Shell 来说就是环境变量。</strong></p>
+<h3 id="输出变量-export-命令"><a href="#输出变量-export-命令" class="headerlink" title="输出变量 export 命令"></a>输出变量 export 命令</h3><p>用户创建的变量仅可用于当前 Shell，子 Shell 默认读取不到父 Shell 定义的变量。为了把变量传递给子 Shell，需要使用<code>export</code>命令。<strong>这样输出的变量，对于子 Shell 来说就是环境变量。</strong></p>
 <p><code>export</code>命令用来向子 Shell 输出变量。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">NAME=foo</span><br><span class="line"><span class="built_in">export</span> NAME</span><br></pre></td></tr></table></figure>
 
@@ -104,7 +104,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 输出变量 $foo</span></span><br><span class="line">$ <span class="built_in">export</span> foo=bar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建子 Shell</span></span><br><span class="line">$ bash</span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取 $foo</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$foo</span></span><br><span class="line">bar</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改继承的变量</span></span><br><span class="line">$ foo=baz</span><br><span class="line"></span><br><span class="line"><span class="comment"># 退出子 Shell</span></span><br><span class="line">$ <span class="built_in">exit</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取 $foo</span></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$foo</span></span><br><span class="line">bar</span><br></pre></td></tr></table></figure>
 
 <p>上面例子中，子 Shell 修改了继承的变量<code>$foo</code>，对父 Shell 没有影响。</p>
-<h2 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h2><ol>
+<h3 id="特殊变量"><a href="#特殊变量" class="headerlink" title="特殊变量"></a>特殊变量</h3><ol>
 <li><p><code>$?</code></p>
 <p><code>$?</code>为上一个命令的退出码，用来判断上一个命令是否执行成功。返回值是<code>0</code>，表示上一个命令执行成功；如果是非零，上一个命令执行失败。</p>
 </li>
@@ -115,13 +115,13 @@
 <p>这个特殊变量可以用来命名临时文件。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">LOGFILE=/tmp/output_log.$$</span><br></pre></td></tr></table></figure></li>
 </ol>
-<h1 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h1><h2 id="字符串长度"><a href="#字符串长度" class="headerlink" title="字符串长度"></a>字符串长度</h2><p>获取字符串长度的语法如下。</p>
+<h2 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h2><h3 id="字符串长度"><a href="#字符串长度" class="headerlink" title="字符串长度"></a>字符串长度</h3><p>获取字符串长度的语法如下。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$&#123;#varname&#125;</span><br></pre></td></tr></table></figure>
 
 <p>下面是一个例子。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ myPath=/home/cam/book/long.file.name</span><br><span class="line">$ echo $&#123;#myPath&#125;</span><br><span class="line">29</span><br></pre></td></tr></table></figure>
 
-<h2 id="子字符串"><a href="#子字符串" class="headerlink" title="子字符串"></a>子字符串</h2><p>字符串提取子串的语法如下。</p>
+<h3 id="子字符串"><a href="#子字符串" class="headerlink" title="子字符串"></a>子字符串</h3><p>字符串提取子串的语法如下。</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$&#123;varname:offset:length&#125;</span><br></pre></td></tr></table></figure>
 
 <p>上面语法的含义是返回变量<code>$varname</code>的子字符串，从位置<code>offset</code>开始（从<code>0</code>开始计算），长度为<code>length</code>。</p>
@@ -135,7 +135,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ foo=&quot;This string is long.&quot;</span><br><span class="line">$ echo $&#123;foo: -5&#125;</span><br><span class="line">long.</span><br><span class="line">$ echo $&#123;foo: -5:2&#125;</span><br><span class="line">lo</span><br><span class="line">$ echo $&#123;foo: -5:-2&#125;</span><br><span class="line">lon</span><br></pre></td></tr></table></figure>
 
 <p>上面例子中，<code>offset</code>为<code>-5</code>，表示从倒数第5个字符开始截取，所以返回<code>long.</code>。如果指定长度<code>length</code>为<code>2</code>，则返回<code>lo</code>；如果<code>length</code>为<code>-2</code>，表示要排除从字符串末尾开始的2个字符，所以返回<code>lon</code>。</p>
-<h1 id="Bash-启动环境"><a href="#Bash-启动环境" class="headerlink" title="Bash 启动环境"></a>Bash 启动环境</h1><ul>
+<h2 id="Bash-启动环境"><a href="#Bash-启动环境" class="headerlink" title="Bash 启动环境"></a>Bash 启动环境</h2><ul>
 <li><code>login shell</code> 登陆时走完整的会话构建流程, 比如 <code>tty1</code>~`tty6` 控制终端, 或者 ssh 远程登陆.</li>
 <li><code>no login shell</code> 登陆时不需要走完整的会话构建流程, 比如 在 X11 图形环境下, 打开的终端窗口, 或者是在 Shell 下进入子 Shell 进程.</li>
 </ul>
@@ -155,7 +155,7 @@
 <li><code>~/.bash_logout</code> <code>login shell</code> 退出时执行用户环境清理配置文件</li>
 <li><code>~/.inputrc</code> 用户环境交互原信息配置信息, 比如定义一些交互快捷键</li>
 </ul>
-<h2 id="登录Session"><a href="#登录Session" class="headerlink" title="登录Session"></a>登录Session</h2><p>登录 Session 一般进行整个系统环境的初始化，启动的初始化脚本依次如下。</p>
+<h3 id="登录Session"><a href="#登录Session" class="headerlink" title="登录Session"></a>登录Session</h3><p>登录 Session 一般进行整个系统环境的初始化，启动的初始化脚本依次如下。</p>
 <ol>
 <li><p><code>/etc/profile</code>：所有用户的全局配置脚本，脚本中会执行<code>/etc/profile.d</code>目录里面所有<code>.sh</code>文件。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> /etc/profile.d/*.sh /etc/profile.d/sh.local ; <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">if</span> [ -r <span class="string">&quot;<span class="variable">$i</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$&#123;-#*i&#125;</span>&quot;</span> != <span class="string">&quot;$-&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">            . <span class="string">&quot;<span class="variable">$i</span>&quot;</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            . <span class="string">&quot;<span class="variable">$i</span>&quot;</span> &gt;/dev/null</span><br><span class="line">        <span class="keyword">fi</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></li>
@@ -169,7 +169,7 @@
 </li>
 </ol>
 <p>Linux 发行版更新的时候，会更新<code>/etc</code>里面的文件，比如<code>/etc/profile</code>，因此不要直接修改这个文件。如果想修改所有用户的登陆环境，就在<code>/etc/profile.d</code>目录里面新建<code>.sh</code>脚本。</p>
-<h2 id="非登录Session"><a href="#非登录Session" class="headerlink" title="非登录Session"></a>非登录Session</h2><p>非登录 Session 的初始化脚本依次如下。</p>
+<h3 id="非登录Session"><a href="#非登录Session" class="headerlink" title="非登录Session"></a>非登录Session</h3><p>非登录 Session 的初始化脚本依次如下。</p>
 <ol>
 <li><p><code>~/.bashrc</code>：定义当前用户下的环境变量，其中会执行<code>/etc/bash.bashrc</code>。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># .bashrc</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># User specific aliases and functions</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">alias</span> rm=<span class="string">&#x27;rm -i&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> cp=<span class="string">&#x27;cp -i&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> mv=<span class="string">&#x27;mv -i&#x27;</span></span><br><span class="line"><span class="comment"># Sodded by Anaconda3 4.4.0 installer</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="string">&quot;/root/anaconda3/bin:<span class="variable">$PATH</span>&quot;</span></span><br><span class="line"><span class="built_in">source</span> /root/.bashrcurce global definitions</span><br><span class="line"></span><br><span class="line">**<span class="keyword">if</span> [ -f /etc/bashrc ]; <span class="keyword">then</span></span><br><span class="line">	. /etc/bashrc</span><br><span class="line"><span class="keyword">fi</span>**</span><br></pre></td></tr></table></figure></li>
@@ -180,9 +180,72 @@
       </tags>
   </entry>
   <entry>
+    <title>Git 配置</title>
+    <url>/2020/03/16/Git-%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h2 id="配置信息位置"><a href="#配置信息位置" class="headerlink" title="配置信息位置"></a>配置信息位置</h2><p><code>~/.gitconfig</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置git全局代理</span></span><br><span class="line">[http <span class="string">&quot;https://github.com&quot;</span>]</span><br><span class="line">	proxy = socks5://127.0.0.1:7890</span><br><span class="line">[user]</span><br><span class="line">	name = xxxxx</span><br><span class="line">	email = xxxxx</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+]]></content>
+      <categories>
+        <category>配置</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java 安装配置</title>
+    <url>/2021/03/24/Java-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h2 id="一、Mac-自带JRE"><a href="#一、Mac-自带JRE" class="headerlink" title="一、Mac 自带JRE"></a>一、Mac 自带JRE</h2><p>终端输入</p>
+<span id="more"></span>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">/usr/libexec/java_home -V</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">Matching Java Virtual Machines (2):</span></span><br><span class="line"><span class="string">    1.8.281.09 (x86_64) &quot;Oracle Corporation&quot; - &quot;Java&quot; /Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home</span></span><br><span class="line"><span class="string">    1.8.0_281 (x86_64) &quot;Oracle Corporation&quot; - &quot;Java SE 8&quot; /Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home</span></span><br><span class="line"><span class="string">/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p> macOS 自带 JRE，而不是 JDK</p>
+<p>选择目录 <code>/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home</code>，显示</p>
+<p><img src="https://i.loli.net/2021/05/16/49kSeP3BtL8qKVj.png" alt="Java%20%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%2057424c6814d946eaa916ccddd8bcdb9a/Untitled.png"></p>
+<h2 id="二、安装-JDK-8"><a href="#二、安装-JDK-8" class="headerlink" title="二、安装 JDK 8"></a>二、安装 JDK 8</h2><ol>
+<li><p>下载安装包安装</p>
+</li>
+<li><p>添加环境变量 </p>
+<p>在 <code>.zshrc</code> 文件中</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fan@MacBook-Pro  ~  java -version</span><br><span class="line">java version <span class="string">&quot;1.8.0_281&quot;</span></span><br><span class="line">Java(TM) SE Runtime Environment (build <span class="number">1.8</span><span class="number">.0_281</span>-b09)</span><br><span class="line">Java HotSpot(TM) <span class="number">64</span>-Bit Server VM (build <span class="number">25.281</span>-b09, mixed mode)</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>配置</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java 正则表达式</title>
+    <url>/2021/05/14/Java-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<h2 id="一、捕获组的概念"><a href="#一、捕获组的概念" class="headerlink" title="一、捕获组的概念"></a>一、捕获组的概念</h2><p>捕获组可以通过从左到右计算其开括号来编号，<strong>编号从 1 开始</strong>。例如，在表达式 ((A)(B(C))) 中，存在四个组：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">((A)(B(C)))</span><br><span class="line">(A)</span><br><span class="line">(B(C))</span><br><span class="line">(C)</span><br></pre></td></tr></table></figure>
+
+<p>组 0 代表整个表达式</p>
+<span id="more"></span>
+
+<h2 id="二、详解-Pattern-类与-Matcher-类"><a href="#二、详解-Pattern-类与-Matcher-类" class="headerlink" title="二、详解 Pattern 类与 Matcher 类"></a>二、详解 Pattern 类与 Matcher 类</h2><p>Java 正则表达式通过 <code>java.util.regex</code> 包下的 Pattern 类与 Matcher 类实现。</p>
+<p>Pattern 类用于创建一个正则表达式，创建一个 pattern，构造方法是私有的，不能够直接创建，需要通过 <code>Pattern.compile(String regex)</code> 创建一个正则表达式。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern p=Pattern.compile(<span class="string">&quot;\\w+&quot;</span>); </span><br><span class="line">p.pattern();<span class="comment">//返回 \w+</span></span><br></pre></td></tr></table></figure>
+
+<p>pattern() 返回正则表达式的字符串形式，其实就是返回 Pattern.complile(String regex) 的 regex 参数。</p>
+<h3 id="Pattern-matcher-CharSequence-input"><a href="#Pattern-matcher-CharSequence-input" class="headerlink" title="Pattern.matcher(CharSequence input)"></a><code>Pattern.matcher(CharSequence input)</code></h3><p>Pattern.matcher(CharSequence input)返回一个Matcher对象。</p>
+<p>Matcher 类的构造方法是私有的，不能够随意创建，只能通过该方法获取该类的实例。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern p=Pattern.compile(<span class="string">&quot;\\d+&quot;</span>); </span><br><span class="line">Matcher m=p.matcher(<span class="string">&quot;22bb23&quot;</span>); </span><br><span class="line">m.pattern();<span class="comment">//返回p 也就是返回该Matcher对象是由哪个Pattern对象的创建的</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Mathcer-start-Matcher-end-Matcher-group"><a href="#Mathcer-start-Matcher-end-Matcher-group" class="headerlink" title="Mathcer.start()/ Matcher.end()/ Matcher.group()"></a>Mathcer.start()/ Matcher.end()/ Matcher.group()</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern p=Pattern.compile(<span class="string">&quot;([a-z]+)(\\d+)&quot;</span>); </span><br><span class="line">Matcher m=p.matcher(<span class="string">&quot;aaa2223bb&quot;</span>); </span><br><span class="line">**m.find();   <span class="comment">//匹配aaa2223** </span></span><br><span class="line">m.groupCount();   <span class="comment">//返回2,因为有2组 </span></span><br><span class="line">m.start(<span class="number">1</span>);   <span class="comment">//返回0 返回第一组匹配到的子字符串在字符串中的索引号 </span></span><br><span class="line">m.start(<span class="number">2</span>);   <span class="comment">//返回3 </span></span><br><span class="line">m.end(<span class="number">1</span>);   <span class="comment">//返回3 返回第一组匹配到的子字符串的最后一个字符在字符串中的索引位置. </span></span><br><span class="line">m.end(<span class="number">2</span>);   <span class="comment">//返回7 </span></span><br><span class="line">m.group(<span class="number">1</span>);   <span class="comment">//返回aaa,返回第一组匹配到的子字符串 </span></span><br><span class="line">m.group(<span class="number">2</span>);   <span class="comment">//返回2223,返回第二组匹配到的子字符串</span></span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
     <title>Jupyter Notebook 服务器</title>
     <url>/2021/03/20/Jupyter-Notebook-%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
-    <content><![CDATA[<h1 id="Jupyter-Notebook-服务器"><a href="#Jupyter-Notebook-服务器" class="headerlink" title="Jupyter Notebook 服务器"></a>Jupyter Notebook 服务器</h1><h2 id="1、-生成配置文件"><a href="#1、-生成配置文件" class="headerlink" title="1、 生成配置文件"></a>1、 生成配置文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python</span><br><span class="line">&gt;&gt; from notebook.auth import passwd</span><br><span class="line">&gt;&gt; passwd()</span><br><span class="line">Enter password: </span><br><span class="line">Verify password: </span><br><span class="line"><span class="string">&#x27;sha1:673a8456a8e8:4377bd9ee8dc33d4cb5a2011f7a89643de15c11c&#x27;</span></span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h2 id="1、-生成配置文件"><a href="#1、-生成配置文件" class="headerlink" title="1、 生成配置文件"></a>1、 生成配置文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python</span><br><span class="line">&gt;&gt; from notebook.auth import passwd</span><br><span class="line">&gt;&gt; passwd()</span><br><span class="line">Enter password: </span><br><span class="line">Verify password: </span><br><span class="line"><span class="string">&#x27;sha1:673a8456a8e8:4377bd9ee8dc33d4cb5a2011f7a89643de15c11c&#x27;</span></span><br></pre></td></tr></table></figure>
 <span id="more"></span>
 
 <h2 id="2、设置配置文件"><a href="#2、设置配置文件" class="headerlink" title="2、设置配置文件"></a>2、设置配置文件</h2><p>可以直接修改配置文件 <code>~/.jupyter/jupyter_notebook_config.py</code> ，但需要改动到默认的配置文件中。</p>
@@ -214,72 +277,9 @@
       </tags>
   </entry>
   <entry>
-    <title>Java 正则表达式</title>
-    <url>/2021/05/14/Java-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="Pattern-类-与-Matcher-类"><a href="#Pattern-类-与-Matcher-类" class="headerlink" title="Pattern 类 与 Matcher 类"></a>Pattern 类 与 Matcher 类</h1><h2 id="一、捕获组的概念"><a href="#一、捕获组的概念" class="headerlink" title="一、捕获组的概念"></a>一、捕获组的概念</h2><p>捕获组可以通过从左到右计算其开括号来编号，<strong>编号从 1 开始</strong>。例如，在表达式 ((A)(B(C))) 中，存在四个组：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">((A)(B(C)))</span><br><span class="line">(A)</span><br><span class="line">(B(C))</span><br><span class="line">(C)</span><br></pre></td></tr></table></figure>
-
-<p>组 0 代表整个表达式</p>
-<span id="more"></span>
-
-<h2 id="二、详解-Pattern-类与-Matcher-类"><a href="#二、详解-Pattern-类与-Matcher-类" class="headerlink" title="二、详解 Pattern 类与 Matcher 类"></a>二、详解 Pattern 类与 Matcher 类</h2><p>Java 正则表达式通过 <code>java.util.regex</code> 包下的 Pattern 类与 Matcher 类实现。</p>
-<p>Pattern 类用于创建一个正则表达式，创建一个 pattern，构造方法是私有的，不能够直接创建，需要通过 <code>Pattern.compile(String regex)</code> 创建一个正则表达式。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern p=Pattern.compile(<span class="string">&quot;\\w+&quot;</span>); </span><br><span class="line">p.pattern();<span class="comment">//返回 \w+</span></span><br></pre></td></tr></table></figure>
-
-<p>pattern() 返回正则表达式的字符串形式，其实就是返回 Pattern.complile(String regex) 的 regex 参数。</p>
-<h3 id="Pattern-matcher-CharSequence-input"><a href="#Pattern-matcher-CharSequence-input" class="headerlink" title="Pattern.matcher(CharSequence input)"></a><code>Pattern.matcher(CharSequence input)</code></h3><p>Pattern.matcher(CharSequence input)返回一个Matcher对象。</p>
-<p>Matcher 类的构造方法是私有的，不能够随意创建，只能通过该方法获取该类的实例。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern p=Pattern.compile(<span class="string">&quot;\\d+&quot;</span>); </span><br><span class="line">Matcher m=p.matcher(<span class="string">&quot;22bb23&quot;</span>); </span><br><span class="line">m.pattern();<span class="comment">//返回p 也就是返回该Matcher对象是由哪个Pattern对象的创建的</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Mathcer-start-Matcher-end-Matcher-group"><a href="#Mathcer-start-Matcher-end-Matcher-group" class="headerlink" title="Mathcer.start()/ Matcher.end()/ Matcher.group()"></a>Mathcer.start()/ Matcher.end()/ Matcher.group()</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern p=Pattern.compile(<span class="string">&quot;([a-z]+)(\\d+)&quot;</span>); </span><br><span class="line">Matcher m=p.matcher(<span class="string">&quot;aaa2223bb&quot;</span>); </span><br><span class="line">**m.find();   <span class="comment">//匹配aaa2223** </span></span><br><span class="line">m.groupCount();   <span class="comment">//返回2,因为有2组 </span></span><br><span class="line">m.start(<span class="number">1</span>);   <span class="comment">//返回0 返回第一组匹配到的子字符串在字符串中的索引号 </span></span><br><span class="line">m.start(<span class="number">2</span>);   <span class="comment">//返回3 </span></span><br><span class="line">m.end(<span class="number">1</span>);   <span class="comment">//返回3 返回第一组匹配到的子字符串的最后一个字符在字符串中的索引位置. </span></span><br><span class="line">m.end(<span class="number">2</span>);   <span class="comment">//返回7 </span></span><br><span class="line">m.group(<span class="number">1</span>);   <span class="comment">//返回aaa,返回第一组匹配到的子字符串 </span></span><br><span class="line">m.group(<span class="number">2</span>);   <span class="comment">//返回2223,返回第二组匹配到的子字符串</span></span><br></pre></td></tr></table></figure>]]></content>
-  </entry>
-  <entry>
-    <title>Java 安装配置</title>
-    <url>/2021/03/24/Java-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="Java-安装配置"><a href="#Java-安装配置" class="headerlink" title="Java 安装配置"></a>Java 安装配置</h1><h2 id="一、Mac-自带JRE"><a href="#一、Mac-自带JRE" class="headerlink" title="一、Mac 自带JRE"></a>一、Mac 自带JRE</h2><p>终端输入</p>
-<span id="more"></span>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">/usr/libexec/java_home -V</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">Matching Java Virtual Machines (2):</span></span><br><span class="line"><span class="string">    1.8.281.09 (x86_64) &quot;Oracle Corporation&quot; - &quot;Java&quot; /Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home</span></span><br><span class="line"><span class="string">    1.8.0_281 (x86_64) &quot;Oracle Corporation&quot; - &quot;Java SE 8&quot; /Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home</span></span><br><span class="line"><span class="string">/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p> macOS 自带 JRE，而不是 JDK</p>
-<p>选择目录 <code>/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home</code>，显示</p>
-<p><img src="https://i.loli.net/2021/05/16/49kSeP3BtL8qKVj.png" alt="Java%20%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%2057424c6814d946eaa916ccddd8bcdb9a/Untitled.png"></p>
-<h2 id="二、安装-JDK-8"><a href="#二、安装-JDK-8" class="headerlink" title="二、安装 JDK 8"></a>二、安装 JDK 8</h2><ol>
-<li><p>下载安装包安装</p>
-</li>
-<li><p>添加环境变量 </p>
-<p>在 <code>.zshrc</code> 文件中</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fan@MacBook-Pro  ~  java -version</span><br><span class="line">java version <span class="string">&quot;1.8.0_281&quot;</span></span><br><span class="line">Java(TM) SE Runtime Environment (build <span class="number">1.8</span><span class="number">.0_281</span>-b09)</span><br><span class="line">Java HotSpot(TM) <span class="number">64</span>-Bit Server VM (build <span class="number">25.281</span>-b09, mixed mode)</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>配置</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>macOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git 配置</title>
-    <url>/2020/03/16/Git-%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="Git-配置"><a href="#Git-配置" class="headerlink" title="Git 配置"></a>Git 配置</h1><h2 id="配置信息位置"><a href="#配置信息位置" class="headerlink" title="配置信息位置"></a>配置信息位置</h2><p><code>~/.gitconfig</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置git全局代理</span></span><br><span class="line">[http <span class="string">&quot;https://github.com&quot;</span>]</span><br><span class="line">	proxy = socks5://127.0.0.1:7890</span><br><span class="line">[user]</span><br><span class="line">	name = xxxxx</span><br><span class="line">	email = xxxxx</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-]]></content>
-      <categories>
-        <category>配置</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Jupyter Notebook 选择Kernel</title>
     <url>/2021/03/20/Jupyter-Notebook-%E9%80%89%E6%8B%A9Kernel/</url>
-    <content><![CDATA[<h1 id="选择-Kernel"><a href="#选择-Kernel" class="headerlink" title="选择 Kernel"></a>选择 Kernel</h1><h2 id="一、创建对应-conda-环境的-kernel"><a href="#一、创建对应-conda-环境的-kernel" class="headerlink" title="一、创建对应 conda 环境的 kernel"></a>一、创建对应 conda 环境的 kernel</h2><h3 id="激活-conda-环境"><a href="#激活-conda-环境" class="headerlink" title="激活 conda 环境"></a>激活 conda 环境</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> activate 环境名称</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h2 id="一、创建对应-conda-环境的-kernel"><a href="#一、创建对应-conda-环境的-kernel" class="headerlink" title="一、创建对应 conda 环境的 kernel"></a>一、创建对应 conda 环境的 kernel</h2><h3 id="激活-conda-环境"><a href="#激活-conda-环境" class="headerlink" title="激活 conda 环境"></a>激活 conda 环境</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> activate 环境名称</span><br></pre></td></tr></table></figure>
 
 <h3 id="安装-ipykernel"><a href="#安装-ipykernel" class="headerlink" title="安装 ipykernel"></a>安装 <code>ipykernel</code></h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda install ipykernel</span><br></pre></td></tr></table></figure>
 
@@ -305,7 +305,7 @@
 
 <span id="more"></span>
 
-<h1 id="创建参考文献"><a href="#创建参考文献" class="headerlink" title="创建参考文献"></a>创建参考文献</h1><p>添加 <code>name.bib</code>文件</p>
+<h2 id="创建参考文献"><a href="#创建参考文献" class="headerlink" title="创建参考文献"></a>创建参考文献</h2><p>添加 <code>name.bib</code>文件</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">\documentclass&#123;ctexart&#125;</span><br><span class="line">\title&#123;&#125;</span><br><span class="line">\author&#123;&#125;</span><br><span class="line">\date&#123;&#125;</span><br><span class="line">\usepackage&#123;geometry&#125;</span><br><span class="line">\usepackage[breaklinks=true,bookmarks=false]&#123;hyperref&#125;</span><br><span class="line">\geometry&#123;a4paper,scale=0.7&#125;</span><br><span class="line">\begin&#123;document&#125;</span><br><span class="line">    \maketitle</span><br><span class="line">    \large</span><br><span class="line"></span><br><span class="line">\bibliographystyle&#123;unsrt&#125;</span><br><span class="line">\bibliography&#123;name.bib&#125;</span><br><span class="line">\end&#123;document&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 <p>在正文中通过 <code>\cite&#123;&#125;</code>来引用</p>
@@ -316,34 +316,9 @@
       </tags>
   </entry>
   <entry>
-    <title>LaTex 环境配置 (MacTex &amp; VsCode)</title>
-    <url>/2020/10/21/LaTex-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE-MacTex-VsCode/</url>
-    <content><![CDATA[<h1 id="环境配置-MacTex-VS-Code"><a href="#环境配置-MacTex-VS-Code" class="headerlink" title="环境配置 MacTex + VS Code"></a>环境配置 MacTex + VS Code</h1><ol>
-<li><p>下载安装MacTex和VSCode</p>
-<p><img src="https://i.loli.net/2021/05/16/lyGJSORTYKa6zbx.png" alt="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%20MacTex%20+%20VS%20Code%20fb5f49e21c274303880bfca168d097cf/Untitled.png"></p>
-</li>
-</ol>
-<span id="more"></span>
-
-<ol start="2">
-<li><p>在VSCode内安装 LaTeX Workshop 插件</p>
-<p><img src="https://i.loli.net/2021/05/16/Is4HgWi7j1CBDoS.png" alt="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%20MacTex%20+%20VS%20Code%20fb5f49e21c274303880bfca168d097cf/Untitled%201.png"></p>
-</li>
-<li><p>修改VSCode中的 settings.json</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;workbench.colorTheme&quot;</span>: <span class="string">&quot;One Dark Pro&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;terminal.integrated.shell.osx&quot;</span>: <span class="string">&quot;/bin/zsh&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;terminal.integrated.fontFamily&quot;</span>: <span class="string">&quot;Menlo for Powerline&quot;</span>,</span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.autoBuild.run&quot;</span>: <span class="string">&quot;onSave&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.showContextMenu&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.intellisense.package.enabled&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.message.error.show&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.message.warning.show&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.tools&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-synctex=1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-interaction=nonstopmode&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-file-line-error&quot;</span>,</span><br><span class="line">                <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-synctex=1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-interaction=nonstopmode&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-file-line-error&quot;</span>,</span><br><span class="line">                <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;latexmk&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;latexmk&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-synctex=1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-interaction=nonstopmode&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-file-line-error&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-pdf&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-outdir=%OUTDIR%&quot;</span>,</span><br><span class="line">                <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.recipes&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;XeLaTeX&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;PDFLaTeX&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;pdflatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;BibTeX&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;bibtex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;LaTeXmk&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;latexmk&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;xelatex -&gt; bibtex -&gt; xelatex*2&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;pdflatex -&gt; bibtex -&gt; pdflatex*2&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;pdflatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.clean.fileTypes&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;*.aux&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.bbl&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.blg&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.idx&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.ind&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.lof&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.lot&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.out&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.toc&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.acn&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.acr&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.alg&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.glg&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.glo&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.gls&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.ist&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.fls&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.log&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.fdb_latexmk&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.autoClean.run&quot;</span>: <span class="string">&quot;onFailed&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.recipe.default&quot;</span>: <span class="string">&quot;lastUsed&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.view.pdf.internal.synctex.keybinding&quot;</span>: <span class="string">&quot;double-click&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.iconTheme&quot;</span>: <span class="string">&quot;material-icon-theme&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;python.defaultInterpreterPath&quot;</span>: <span class="string">&quot;/Users/fan/anaconda3/envs/ML/bin/python&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.startupEditor&quot;</span>: <span class="string">&quot;none&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;git.confirmSync&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.editorAssociations&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;viewType&quot;</span>: <span class="string">&quot;jupyter.notebook.ipynb&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;filenamePattern&quot;</span>: <span class="string">&quot;*.ipynb&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>配置</category>
-      </categories>
-      <tags>
-        <tag>LaTex</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Linux 常用指令</title>
     <url>/2020/08/11/Linux-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="Linux-常用指令"><a href="#Linux-常用指令" class="headerlink" title="Linux 常用指令"></a>Linux 常用指令</h1><h2 id="文件夹"><a href="#文件夹" class="headerlink" title="文件夹"></a>文件夹</h2><p>bin：存储的二进制文件 可以被运行<br>dev：主要存放一些外接设备，不能直接被使用，需要被挂载<br>etc：存储一些配置文件<br>home：表示除了root用户之外的其他用户的主目录<br>proc：process，存储linux运行时候的进程<br>mnt：当外接设备需要挂载的时候，挂载到mnt目录<br>root：root用户的目录<br>sbin：super binary，存放一些可以被执行的二进制文件，但是只有超级管理员才能够执行<br>tmp：temporary，临时文件<br>usr：存放用户自己安装的软件<br>var：程序/系统的日志文件</p>
+    <content><![CDATA[<h1 id="文件夹"><a href="#文件夹" class="headerlink" title="文件夹"></a>文件夹</h1><p>bin：存储的二进制文件 可以被运行<br>dev：主要存放一些外接设备，不能直接被使用，需要被挂载<br>etc：存储一些配置文件<br>home：表示除了root用户之外的其他用户的主目录<br>proc：process，存储linux运行时候的进程<br>mnt：当外接设备需要挂载的时候，挂载到mnt目录<br>root：root用户的目录<br>sbin：super binary，存放一些可以被执行的二进制文件，但是只有超级管理员才能够执行<br>tmp：temporary，临时文件<br>usr：存放用户自己安装的软件<br>var：程序/系统的日志文件</p>
 <span id="more"></span>
 
 <h1 id="指令主体-选项-操作对象"><a href="#指令主体-选项-操作对象" class="headerlink" title="指令主体 [选项] [操作对象]"></a>指令主体 [选项] [操作对象]</h1><ul>
@@ -482,7 +457,7 @@
 <p>当前主机名中的FQDN</p>
 </li>
 </ol>
-<h2 id="2、id"><a href="#2、id" class="headerlink" title="2、id"></a>2、id</h2><ul>
+<h3 id="2、id"><a href="#2、id" class="headerlink" title="2、id"></a>2、id</h3><ul>
 <li>查看用户的一些基本信息</li>
 </ul>
 <h3 id="3、whoami"><a href="#3、whoami" class="headerlink" title="3、whoami"></a>3、whoami</h3><ul>
@@ -551,9 +526,34 @@
       </tags>
   </entry>
   <entry>
+    <title>LaTex 环境配置 (MacTex &amp; VsCode)</title>
+    <url>/2020/10/21/LaTex-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE-MacTex-VsCode/</url>
+    <content><![CDATA[<h2 id="环境配置-MacTex-VS-Code"><a href="#环境配置-MacTex-VS-Code" class="headerlink" title="环境配置 MacTex + VS Code"></a>环境配置 MacTex + VS Code</h2><ol>
+<li><p>下载安装MacTex和VSCode</p>
+<p><img src="https://i.loli.net/2021/05/16/lyGJSORTYKa6zbx.png" alt="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%20MacTex%20+%20VS%20Code%20fb5f49e21c274303880bfca168d097cf/Untitled.png"></p>
+</li>
+</ol>
+<span id="more"></span>
+
+<ol start="2">
+<li><p>在VSCode内安装 LaTeX Workshop 插件</p>
+<p><img src="https://i.loli.net/2021/05/16/Is4HgWi7j1CBDoS.png" alt="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%20MacTex%20+%20VS%20Code%20fb5f49e21c274303880bfca168d097cf/Untitled%201.png"></p>
+</li>
+<li><p>修改VSCode中的 settings.json</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;workbench.colorTheme&quot;</span>: <span class="string">&quot;One Dark Pro&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;terminal.integrated.shell.osx&quot;</span>: <span class="string">&quot;/bin/zsh&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;terminal.integrated.fontFamily&quot;</span>: <span class="string">&quot;Menlo for Powerline&quot;</span>,</span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.autoBuild.run&quot;</span>: <span class="string">&quot;onSave&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.showContextMenu&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.intellisense.package.enabled&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.message.error.show&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.message.warning.show&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.tools&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-synctex=1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-interaction=nonstopmode&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-file-line-error&quot;</span>,</span><br><span class="line">                <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-synctex=1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-interaction=nonstopmode&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-file-line-error&quot;</span>,</span><br><span class="line">                <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;latexmk&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;latexmk&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-synctex=1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-interaction=nonstopmode&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-file-line-error&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-pdf&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-outdir=%OUTDIR%&quot;</span>,</span><br><span class="line">                <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.recipes&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;XeLaTeX&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;PDFLaTeX&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;pdflatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;BibTeX&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;bibtex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;LaTeXmk&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;latexmk&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;xelatex -&gt; bibtex -&gt; xelatex*2&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;pdflatex -&gt; bibtex -&gt; pdflatex*2&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;pdflatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.clean.fileTypes&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;*.aux&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.bbl&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.blg&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.idx&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.ind&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.lof&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.lot&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.out&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.toc&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.acn&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.acr&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.alg&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.glg&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.glo&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.gls&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.ist&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.fls&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.log&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.fdb_latexmk&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.autoClean.run&quot;</span>: <span class="string">&quot;onFailed&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.recipe.default&quot;</span>: <span class="string">&quot;lastUsed&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.view.pdf.internal.synctex.keybinding&quot;</span>: <span class="string">&quot;double-click&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.iconTheme&quot;</span>: <span class="string">&quot;material-icon-theme&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;python.defaultInterpreterPath&quot;</span>: <span class="string">&quot;/Users/fan/anaconda3/envs/ML/bin/python&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.startupEditor&quot;</span>: <span class="string">&quot;none&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;git.confirmSync&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.editorAssociations&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;viewType&quot;</span>: <span class="string">&quot;jupyter.notebook.ipynb&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;filenamePattern&quot;</span>: <span class="string">&quot;*.ipynb&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>配置</category>
+      </categories>
+      <tags>
+        <tag>LaTex</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Maven 安装配置</title>
     <url>/2021/03/24/Maven%20%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="Maven-安装配置"><a href="#Maven-安装配置" class="headerlink" title="Maven 安装配置"></a>Maven 安装配置</h1><h2 id="一、下载-Maven"><a href="#一、下载-Maven" class="headerlink" title="一、下载 Maven"></a>一、下载 Maven</h2><p>首先从 Maven 官方地址：<a href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a> 下载最新版本apache-maven-xxx-bin.tar.gz</p>
+    <content><![CDATA[<h2 id="一、下载-Maven"><a href="#一、下载-Maven" class="headerlink" title="一、下载 Maven"></a>一、下载 Maven</h2><p>首先从 Maven 官方地址：<a href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a> 下载最新版本apache-maven-xxx-bin.tar.gz</p>
 <p>加下来将下载的文件解压到 /usr/local/maven 下。</p>
 <span id="more"></span>
 
@@ -576,6 +576,79 @@
       <tags>
         <tag>Java</tag>
         <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>OpenCV</title>
+    <url>/2020/03/24/OpenCV/</url>
+    <content><![CDATA[<h3 id="cv2-imread"><a href="#cv2-imread" class="headerlink" title="cv2.imread()"></a>cv2.imread()</h3><p><code>cv2.imread(filename[, flags]) </code></p>
+<p>第二个参数是要告诉函数应该如何读取这幅图片。</p>
+<p>• <code>cv2.IMREAD_COLOR</code>：读入一副彩色图像。图像的透明度会被忽略，这是默认参数。</p>
+<p>• <code>cv2.IMREAD_GRAYSCALE</code>：以灰度模式读入图像</p>
+<p>返回（高度，宽度，通道数）的np数组，可通过.shape查看</p>
+<span id="more"></span>
+
+
+
+<h3 id="cv2-resize"><a href="#cv2-resize" class="headerlink" title="cv2.resize()"></a>cv2.resize()</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cv2.resize(src, dsize[, dst[, fx[, fy[, interpolation]]]])</span><br></pre></td></tr></table></figure>
+
+<p>参数：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>src</td>
+<td>【必需】原图像</td>
+</tr>
+<tr>
+<td>dsize</td>
+<td>【必需】输出图像所需大小</td>
+</tr>
+<tr>
+<td>fx</td>
+<td>【可选】沿水平轴的比例因子</td>
+</tr>
+<tr>
+<td>fy</td>
+<td>【可选】沿垂直轴的比例因子</td>
+</tr>
+<tr>
+<td>interpolation</td>
+<td>【可选】插值方式</td>
+</tr>
+</tbody></table>
+<p>其中插值方式有很多种：</p>
+<table>
+<thead>
+<tr>
+<th>cv.INTER_NEAREST</th>
+<th>最近邻插值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cv.INTER_LINEAR</td>
+<td>双线性插值</td>
+</tr>
+<tr>
+<td>cv.INTER_CUBIC</td>
+<td>双线性插值</td>
+</tr>
+<tr>
+<td>cv.INTER_AREA</td>
+<td>使用像素区域关系重新采样。它可能是图像抽取的首选方法，因为它可以提供无莫尔条纹的结果。但是当图像被缩放时，它类似于INTER_NEAREST方法。</td>
+</tr>
+</tbody></table>
+<p>通常的，缩小使用cv.INTER_AREA，放缩使用cv.INTER_CUBIC(较慢)和cv.INTER_LINEAR(较快效果也不错)。<br>默认情况下，所有的放缩都使用cv.INTER_LINEAR。</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
       </tags>
   </entry>
   <entry>
@@ -698,79 +771,6 @@
       </tags>
   </entry>
   <entry>
-    <title>OpenCV</title>
-    <url>/2020/03/24/OpenCV/</url>
-    <content><![CDATA[<h3 id="cv2-imread"><a href="#cv2-imread" class="headerlink" title="cv2.imread()"></a>cv2.imread()</h3><p><code>cv2.imread(filename[, flags]) </code></p>
-<p>第二个参数是要告诉函数应该如何读取这幅图片。</p>
-<p>• <code>cv2.IMREAD_COLOR</code>：读入一副彩色图像。图像的透明度会被忽略，这是默认参数。</p>
-<p>• <code>cv2.IMREAD_GRAYSCALE</code>：以灰度模式读入图像</p>
-<p>返回（高度，宽度，通道数）的np数组，可通过.shape查看</p>
-<span id="more"></span>
-
-
-
-<h3 id="cv2-resize"><a href="#cv2-resize" class="headerlink" title="cv2.resize()"></a>cv2.resize()</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cv2.resize(src, dsize[, dst[, fx[, fy[, interpolation]]]])</span><br></pre></td></tr></table></figure>
-
-<p>参数：</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>src</td>
-<td>【必需】原图像</td>
-</tr>
-<tr>
-<td>dsize</td>
-<td>【必需】输出图像所需大小</td>
-</tr>
-<tr>
-<td>fx</td>
-<td>【可选】沿水平轴的比例因子</td>
-</tr>
-<tr>
-<td>fy</td>
-<td>【可选】沿垂直轴的比例因子</td>
-</tr>
-<tr>
-<td>interpolation</td>
-<td>【可选】插值方式</td>
-</tr>
-</tbody></table>
-<p>其中插值方式有很多种：</p>
-<table>
-<thead>
-<tr>
-<th>cv.INTER_NEAREST</th>
-<th>最近邻插值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>cv.INTER_LINEAR</td>
-<td>双线性插值</td>
-</tr>
-<tr>
-<td>cv.INTER_CUBIC</td>
-<td>双线性插值</td>
-</tr>
-<tr>
-<td>cv.INTER_AREA</td>
-<td>使用像素区域关系重新采样。它可能是图像抽取的首选方法，因为它可以提供无莫尔条纹的结果。但是当图像被缩放时，它类似于INTER_NEAREST方法。</td>
-</tr>
-</tbody></table>
-<p>通常的，缩小使用cv.INTER_AREA，放缩使用cv.INTER_CUBIC(较慢)和cv.INTER_LINEAR(较快效果也不错)。<br>默认情况下，所有的放缩都使用cv.INTER_LINEAR。</p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>机器学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Pytorch DDP</title>
     <url>/2021/05/05/Pytorch-DDP/</url>
     <content><![CDATA[<h2 id="DDP-原理"><a href="#DDP-原理" class="headerlink" title="DDP 原理"></a>DDP 原理</h2><ul>
@@ -819,73 +819,9 @@
       </tags>
   </entry>
   <entry>
-    <title>SSH 互信机制</title>
-    <url>/2021/04/21/SSH%E4%BA%92%E4%BF%A1%E6%9C%BA%E5%88%B6/</url>
-    <content><![CDATA[<h1 id="SSH-互信机制"><a href="#SSH-互信机制" class="headerlink" title="SSH 互信机制"></a>SSH 互信机制</h1><ol>
-<li><p>客户端</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span></span><br><span class="line">$ ssh-keygen -t rsa</span><br><span class="line">$ <span class="built_in">cd</span> .ssh/</span><br><span class="line">$ ls</span><br><span class="line"><span class="comment">## id_rsa  id_rsa.pub</span></span><br></pre></td></tr></table></figure></li>
-<li><p>服务器</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> .ssh/</span><br><span class="line">$ vim authorized_keys</span><br><span class="line"><span class="comment">## 粘贴客户端的id_rsa.pub内容</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<span id="more"></span>
-
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="1、中间人攻击"><a href="#1、中间人攻击" class="headerlink" title="1、中间人攻击"></a>1、中间人攻击</h3><p>SSH之所以能够保证安全，原因在于它采用了公钥加密。</p>
-<p>过程：</p>
-<ol>
-<li>远程主机收到用户的登录请求，把自己的公钥发给用户。</li>
-<li>用户使用这个公钥，将登录密码加密后，发送回来。</li>
-<li>远程主机用自己的私钥，解密登录密码，如果密码正确，就同意用户登录。</li>
-</ol>
-<p>这个过程本身是安全的，但是实施的时候存在一个风险：如果有人截获了登录请求，然后冒充远程主机，将伪造的公钥发给用户，那么用户很难辨别真伪。因为不像https协议，SSH协议的公钥是没有证书中心（CA）公证的，也就是说，都是自己签发的。</p>
-<h3 id="2、口令登陆"><a href="#2、口令登陆" class="headerlink" title="2、口令登陆"></a>2、口令登陆</h3><p>如果第一次登陆服务器，系统会出现如下提示：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">The authenticity of host <span class="string">&#x27;host (12.18.429.21)&#x27;</span> can<span class="string">&#x27;t be established.</span></span><br><span class="line"><span class="string">RSA key fingerprint is 98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)?</span></span><br><span class="line"><span class="string">## 无法确认host主机的真实性，只知道它的公钥指纹，还想继续连接吗？</span></span><br></pre></td></tr></table></figure>
-
-<p>所谓”公钥指纹”，是指公钥长度较长（这里采用RSA算法，长达1024位），很难比对，所以对其进行MD5计算，将它变成一个128位的指纹。上例中是98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d，再进行比较，就容易多了。</p>
-<p>很自然的一个问题就是，用户怎么知道远程主机的公钥指纹应该是多少？回答是没有好办法，远程主机必须在自己的网站上贴出公钥指纹，以便用户自行核对。</p>
-<p>假定经过风险衡量以后，用户决定接受这个远程主机的公钥。系统会出现一句提示，表示host主机已经得到认可。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Warning: Permanently added <span class="string">&#x27;host,12.18.429.21&#x27;</span> (RSA) to the list of known hosts.</span><br></pre></td></tr></table></figure>
-
-<p>然后，会要求输入密码。如果密码正确，就可以登录了。</p>
-<p>当远程主机的公钥被接受以后，它就会被保存在文件 <code>$HOME/.ssh/known_hosts</code> 之中。下次再连接这台主机，系统就会认出它的公钥已经保存在本地了，从而跳过警告部分，直接提示输入密码。</p>
-<p>每个SSH用户都有自己的known_hosts文件，此外系统也有一个这样的文件，通常是 <code>/etc/ssh/ssh_known_hosts</code>，保存一些对所有用户都可信赖的远程主机的公钥。</p>
-<h3 id="3、公钥登陆"><a href="#3、公钥登陆" class="headerlink" title="3、公钥登陆"></a>3、公钥登陆</h3><p>SSH还提供了公钥登录，可以省去输入密码的步骤。</p>
-<p>所谓”公钥登录”，就是用户将自己的公钥储存在远程主机上。登录的时候，远程主机会向用户发送一段随机字符串，用户用自己的私钥加密后，再发回来。远程主机用事先储存的公钥进行解密，如果成功，就证明用户是可信的，直接允许登录shell，不再要求密码。</p>
-<p>这种方法要求用户必须提供自己的公钥。如果没有现成的，可以直接用ssh-keygen生成一个：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen</span><br></pre></td></tr></table></figure>
-
-<p>运行上面的命令以后，系统会出现一系列提示，可以一路回车。其中有一个问题是，要不要对私钥设置口令（passphrase），如果担心私钥的安全，这里可以设置一个。</p>
-<p>运行结束以后，在 <code>$HOME/.ssh/</code> 目录下，会新生成两个文件： <code>id_rsa.pub</code>和 <code>id_rsa</code>。</p>
-<p>前者是公钥，后者是私钥。</p>
-<p>这时再输入下面的命令，将公钥传送到远程主机host上面：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-copy-id user@host</span><br></pre></td></tr></table></figure>
-
-<p>从此再登录，就不需要输入密码了。</p>
-<p>如果还是不行，就打开远程主机的/etc/ssh/sshd_config这个文件，检查下面几行前面”#”注释是否取掉。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">RSAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">AuthorizedKeysFile .ssh/authorized_keys</span><br></pre></td></tr></table></figure>
-
-<p>然后，重启远程主机的ssh服务。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// ubuntu系统</span><br><span class="line">service ssh restart</span><br><span class="line">　　</span><br><span class="line">// debian系统</span><br><span class="line">/etc/init.d/ssh restart</span><br></pre></td></tr></table></figure>
-
-<h3 id="4、authorized-keys文件"><a href="#4、authorized-keys文件" class="headerlink" title="4、authorized_keys文件"></a>4、authorized_keys文件</h3><p>远程主机将用户的公钥，保存在登录后的用户主目录的 <code>$HOME/.ssh/authorized_keys</code>文件中。公钥就是一段字符串，只要把它追加在 <code>authorized_keys</code>文件的末尾就行了。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh user@host <span class="string">&#x27;mkdir -p .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys&#x27;</span> &lt; ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-
-<p>这条命令由多个语句组成，依次分解开来看：</p>
-<p>（1） <code>$ ssh user@host</code>，表示登录远程主机；</p>
-<p>（2）单引号中的 <code>mkdir .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys</code>，表示登录后在远程shell上执行的命令；</p>
-<p>（3） <code>$ mkdir -p .ssh</code> 的作用是，如果用户主目录中的.ssh目录不存在，就创建一个；</p>
-<p>（4） <code>cat &gt;&gt; .ssh/authorized_keys&#39; &lt; ~/.ssh/id_rsa.pub</code>的作用是，将本地的公钥文件 <code>~/.ssh/id_rsa.pub</code>，重定向追加到远程文件 <code>authorized_keys</code>的末尾。</p>
-<p>写入 <code>authorized_keys</code>文件后，公钥登录的设置就完成了。</p>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-        <tag>远程连接</tag>
-        <tag>SSH</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>SSH 端口转发</title>
     <url>/2021/04/20/SSH%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/</url>
-    <content><![CDATA[<h1 id="SSH-端口转发"><a href="#SSH-端口转发" class="headerlink" title="SSH 端口转发"></a>SSH 端口转发</h1><h2 id="一、基本连接"><a href="#一、基本连接" class="headerlink" title="一、基本连接"></a>一、基本连接</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh username@hostname</span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h2 id="一、基本连接"><a href="#一、基本连接" class="headerlink" title="一、基本连接"></a>一、基本连接</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ssh username@hostname</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>执行命令、运行 SSH 客户端的主机，称为本地主机 Host A</li>
@@ -1211,6 +1147,70 @@
       </tags>
   </entry>
   <entry>
+    <title>SSH 互信机制</title>
+    <url>/2021/04/21/SSH%E4%BA%92%E4%BF%A1%E6%9C%BA%E5%88%B6/</url>
+    <content><![CDATA[<h2 id="SSH-互信机制"><a href="#SSH-互信机制" class="headerlink" title="SSH 互信机制"></a>SSH 互信机制</h2><ol>
+<li><p>客户端</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span></span><br><span class="line">$ ssh-keygen -t rsa</span><br><span class="line">$ <span class="built_in">cd</span> .ssh/</span><br><span class="line">$ ls</span><br><span class="line"><span class="comment">## id_rsa  id_rsa.pub</span></span><br></pre></td></tr></table></figure></li>
+<li><p>服务器</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> .ssh/</span><br><span class="line">$ vim authorized_keys</span><br><span class="line"><span class="comment">## 粘贴客户端的id_rsa.pub内容</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<span id="more"></span>
+
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="1、中间人攻击"><a href="#1、中间人攻击" class="headerlink" title="1、中间人攻击"></a>1、中间人攻击</h3><p>SSH之所以能够保证安全，原因在于它采用了公钥加密。</p>
+<p>过程：</p>
+<ol>
+<li>远程主机收到用户的登录请求，把自己的公钥发给用户。</li>
+<li>用户使用这个公钥，将登录密码加密后，发送回来。</li>
+<li>远程主机用自己的私钥，解密登录密码，如果密码正确，就同意用户登录。</li>
+</ol>
+<p>这个过程本身是安全的，但是实施的时候存在一个风险：如果有人截获了登录请求，然后冒充远程主机，将伪造的公钥发给用户，那么用户很难辨别真伪。因为不像https协议，SSH协议的公钥是没有证书中心（CA）公证的，也就是说，都是自己签发的。</p>
+<h3 id="2、口令登陆"><a href="#2、口令登陆" class="headerlink" title="2、口令登陆"></a>2、口令登陆</h3><p>如果第一次登陆服务器，系统会出现如下提示：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">The authenticity of host <span class="string">&#x27;host (12.18.429.21)&#x27;</span> can<span class="string">&#x27;t be established.</span></span><br><span class="line"><span class="string">RSA key fingerprint is 98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)?</span></span><br><span class="line"><span class="string">## 无法确认host主机的真实性，只知道它的公钥指纹，还想继续连接吗？</span></span><br></pre></td></tr></table></figure>
+
+<p>所谓”公钥指纹”，是指公钥长度较长（这里采用RSA算法，长达1024位），很难比对，所以对其进行MD5计算，将它变成一个128位的指纹。上例中是98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d，再进行比较，就容易多了。</p>
+<p>很自然的一个问题就是，用户怎么知道远程主机的公钥指纹应该是多少？回答是没有好办法，远程主机必须在自己的网站上贴出公钥指纹，以便用户自行核对。</p>
+<p>假定经过风险衡量以后，用户决定接受这个远程主机的公钥。系统会出现一句提示，表示host主机已经得到认可。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Warning: Permanently added <span class="string">&#x27;host,12.18.429.21&#x27;</span> (RSA) to the list of known hosts.</span><br></pre></td></tr></table></figure>
+
+<p>然后，会要求输入密码。如果密码正确，就可以登录了。</p>
+<p>当远程主机的公钥被接受以后，它就会被保存在文件 <code>$HOME/.ssh/known_hosts</code> 之中。下次再连接这台主机，系统就会认出它的公钥已经保存在本地了，从而跳过警告部分，直接提示输入密码。</p>
+<p>每个SSH用户都有自己的known_hosts文件，此外系统也有一个这样的文件，通常是 <code>/etc/ssh/ssh_known_hosts</code>，保存一些对所有用户都可信赖的远程主机的公钥。</p>
+<h3 id="3、公钥登陆"><a href="#3、公钥登陆" class="headerlink" title="3、公钥登陆"></a>3、公钥登陆</h3><p>SSH还提供了公钥登录，可以省去输入密码的步骤。</p>
+<p>所谓”公钥登录”，就是用户将自己的公钥储存在远程主机上。登录的时候，远程主机会向用户发送一段随机字符串，用户用自己的私钥加密后，再发回来。远程主机用事先储存的公钥进行解密，如果成功，就证明用户是可信的，直接允许登录shell，不再要求密码。</p>
+<p>这种方法要求用户必须提供自己的公钥。如果没有现成的，可以直接用ssh-keygen生成一个：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen</span><br></pre></td></tr></table></figure>
+
+<p>运行上面的命令以后，系统会出现一系列提示，可以一路回车。其中有一个问题是，要不要对私钥设置口令（passphrase），如果担心私钥的安全，这里可以设置一个。</p>
+<p>运行结束以后，在 <code>$HOME/.ssh/</code> 目录下，会新生成两个文件： <code>id_rsa.pub</code>和 <code>id_rsa</code>。</p>
+<p>前者是公钥，后者是私钥。</p>
+<p>这时再输入下面的命令，将公钥传送到远程主机host上面：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-copy-id user@host</span><br></pre></td></tr></table></figure>
+
+<p>从此再登录，就不需要输入密码了。</p>
+<p>如果还是不行，就打开远程主机的/etc/ssh/sshd_config这个文件，检查下面几行前面”#”注释是否取掉。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">RSAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">AuthorizedKeysFile .ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<p>然后，重启远程主机的ssh服务。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// ubuntu系统</span><br><span class="line">service ssh restart</span><br><span class="line">　　</span><br><span class="line">// debian系统</span><br><span class="line">/etc/init.d/ssh restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、authorized-keys文件"><a href="#4、authorized-keys文件" class="headerlink" title="4、authorized_keys文件"></a>4、authorized_keys文件</h3><p>远程主机将用户的公钥，保存在登录后的用户主目录的 <code>$HOME/.ssh/authorized_keys</code>文件中。公钥就是一段字符串，只要把它追加在 <code>authorized_keys</code>文件的末尾就行了。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh user@host <span class="string">&#x27;mkdir -p .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys&#x27;</span> &lt; ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<p>这条命令由多个语句组成，依次分解开来看：</p>
+<p>（1） <code>$ ssh user@host</code>，表示登录远程主机；</p>
+<p>（2）单引号中的 <code>mkdir .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys</code>，表示登录后在远程shell上执行的命令；</p>
+<p>（3） <code>$ mkdir -p .ssh</code> 的作用是，如果用户主目录中的.ssh目录不存在，就创建一个；</p>
+<p>（4） <code>cat &gt;&gt; .ssh/authorized_keys&#39; &lt; ~/.ssh/id_rsa.pub</code>的作用是，将本地的公钥文件 <code>~/.ssh/id_rsa.pub</code>，重定向追加到远程文件 <code>authorized_keys</code>的末尾。</p>
+<p>写入 <code>authorized_keys</code>文件后，公钥登录的设置就完成了。</p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>远程连接</tag>
+        <tag>SSH</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Vim 配置</title>
     <url>/2021/01/18/Vim%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="Vim-配置"><a href="#Vim-配置" class="headerlink" title="Vim 配置"></a>Vim 配置</h1><p>Vim编辑器相关的所有功能开关都可以通过 <strong><code>.vimrc</code></strong> 文件进行设置。 </p>
@@ -1280,6 +1280,83 @@
 ]]></content>
   </entry>
   <entry>
+    <title>服务器常用指令</title>
+    <url>/2021/03/16/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
+    <content><![CDATA[<h2 id="服务器常用指令"><a href="#服务器常用指令" class="headerlink" title="服务器常用指令"></a>服务器常用指令</h2><p>Status: Linux</p>
+<p>查看系统信息</p>
+<p><code>uname -a</code></p>
+<p>查看centos版本</p>
+<p><code>cat /etc/redhat-release</code></p>
+<span id="more"></span>
+
+<p>给普通用户添加sudo权限</p>
+<ul>
+<li><p>Ubuntu</p>
+<p><code>sudo usermod -aG sudo username</code></p>
+</li>
+<li><p>CentOS</p>
+<p><code>sudo usermod -aG wheel username</code></p>
+</li>
+</ul>
+<p>更改用户home目录</p>
+<ol>
+<li>在sudo用户shell下</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">usermod -d `/usr/newfolder` -u `uid` `username`</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>uid</code>: 通过 <code>id username</code> 来获取</li>
+</ul>
+<ol start="2">
+<li>将原home目录下内容复制到新目录</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo cp -R `/origin/home/.` `/new/home`</span><br></pre></td></tr></table></figure>
+
+<p>实验室服务器登陆校园网</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -d <span class="string">&#x27;user=xxx&amp;pass=xxx&#x27;</span> <span class="string">&quot;http://10.3.8.211/login&quot;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>给容器安装 SSH 服务</title>
+    <url>/2021/01/16/%E7%BB%99%E5%AE%B9%E5%99%A8%E5%AE%89%E8%A3%85SSH%E6%9C%8D%E5%8A%A1/</url>
+    <content><![CDATA[<h2 id="启动-Container"><a href="#启动-Container" class="headerlink" title="启动 Container"></a>启动 Container</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it [containerID] /bin/bash</span><br></pre></td></tr></table></figure>
+
+<h2 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+
+<h2 id="安装SSH服务"><a href="#安装SSH服务" class="headerlink" title="安装SSH服务"></a>安装SSH服务</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install openssh-server</span><br></pre></td></tr></table></figure>
+
+<h2 id="启动SSH服务"><a href="#启动SSH服务" class="headerlink" title="启动SSH服务"></a>启动SSH服务</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service ssh satrt</span><br></pre></td></tr></table></figure>
+
+<h2 id="安装Vim"><a href="#安装Vim" class="headerlink" title="安装Vim"></a>安装Vim</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<h2 id="更改SSH服务配置"><a href="#更改SSH服务配置" class="headerlink" title="更改SSH服务配置"></a>更改SSH服务配置</h2><p><code>vim /etc/ssh/sshd_config</code></p>
+<p>将PermitRootLogin的值从withoutPassword改为yes，允许root用户进行登录</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PermitRootLogin yes</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置root用户登陆密码"><a href="#设置root用户登陆密码" class="headerlink" title="设置root用户登陆密码"></a>设置root用户登陆密码</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">passwd root</span><br></pre></td></tr></table></figure>
+
+<h2 id="重启SSH服务"><a href="#重启SSH服务" class="headerlink" title="重启SSH服务"></a>重启SSH服务</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service ssh restart</span><br></pre></td></tr></table></figure>
+
+<h2 id="退出当前容器"><a href="#退出当前容器" class="headerlink" title="退出当前容器"></a>退出当前容器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="保存镜像到本地"><a href="#保存镜像到本地" class="headerlink" title="保存镜像到本地"></a>保存镜像到本地</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker commit [containerID] [imagename]:[version]</span><br></pre></td></tr></table></figure>
+
+<h2 id="重启镜像"><a href="#重启镜像" class="headerlink" title="重启镜像"></a>重启镜像</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it -d -p 8400:20 -p 8855:22 --name [containername] [imagename]:[tag]</span><br></pre></td></tr></table></figure>
+
+<h2 id="让容器保持运行"><a href="#让容器保持运行" class="headerlink" title="让容器保持运行"></a>让容器保持运行</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker update --restart=always &lt;containerID&gt;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>配置</category>
+      </categories>
+      <tags>
+        <tag>远程连接</tag>
+        <tag>SSH</tag>
+        <tag>Docker</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>oh-my-zsh 配置</title>
     <url>/2020/08/11/oh-my-zsh-%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="oh-my-zsh-配置"><a href="#oh-my-zsh-配置" class="headerlink" title="oh-my-zsh 配置"></a>oh-my-zsh 配置</h1><h2 id="一、clone-项目"><a href="#一、clone-项目" class="headerlink" title="一、clone 项目"></a>一、clone 项目</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com.cnpmjs.org/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</span><br></pre></td></tr></table></figure>
@@ -1343,81 +1420,6 @@
       <tags>
         <tag>macOS</tag>
         <tag>终端</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>服务器常用指令</title>
-    <url>/2021/03/16/%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="服务器常用指令"><a href="#服务器常用指令" class="headerlink" title="服务器常用指令"></a>服务器常用指令</h1><p>Status: Linux</p>
-<p>查看系统信息</p>
-<p><code>uname -a</code></p>
-<p>查看centos版本</p>
-<p><code>cat /etc/redhat-release</code></p>
-<p>给普通用户添加sudo权限</p>
-<ul>
-<li><p>Ubuntu</p>
-<p><code>sudo usermod -aG sudo username</code></p>
-</li>
-<li><p>CentOS</p>
-<p><code>sudo usermod -aG wheel username</code></p>
-</li>
-</ul>
-<p>更改用户home目录</p>
-<ol>
-<li>在sudo用户shell下</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">usermod -d `/usr/newfolder` -u `uid` `username`</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>uid</code>: 通过 <code>id username</code> 来获取</li>
-</ul>
-<ol start="2">
-<li>将原home目录下内容复制到新目录</li>
-</ol>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo cp -R `/origin/home/.` `/new/home`</span><br></pre></td></tr></table></figure>
-
-<p>实验室服务器登陆校园网</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -d <span class="string">&#x27;user=xxx&amp;pass=xxx&#x27;</span> <span class="string">&quot;http://10.3.8.211/login&quot;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>给容器安装 SSH 服务</title>
-    <url>/2021/01/16/%E7%BB%99%E5%AE%B9%E5%99%A8%E5%AE%89%E8%A3%85SSH%E6%9C%8D%E5%8A%A1/</url>
-    <content><![CDATA[<h1 id="给容器安装-SSH-服务"><a href="#给容器安装-SSH-服务" class="headerlink" title="给容器安装 SSH 服务"></a>给容器安装 SSH 服务</h1><h2 id="启动-Container"><a href="#启动-Container" class="headerlink" title="启动 Container"></a>启动 Container</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it [containerID] /bin/bash</span><br></pre></td></tr></table></figure>
-
-<h2 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-
-<h2 id="安装SSH服务"><a href="#安装SSH服务" class="headerlink" title="安装SSH服务"></a>安装SSH服务</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install openssh-server</span><br></pre></td></tr></table></figure>
-
-<h2 id="启动SSH服务"><a href="#启动SSH服务" class="headerlink" title="启动SSH服务"></a>启动SSH服务</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service ssh satrt</span><br></pre></td></tr></table></figure>
-
-<h2 id="安装Vim"><a href="#安装Vim" class="headerlink" title="安装Vim"></a>安装Vim</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt-get install vim</span><br></pre></td></tr></table></figure>
-
-<h2 id="更改SSH服务配置"><a href="#更改SSH服务配置" class="headerlink" title="更改SSH服务配置"></a>更改SSH服务配置</h2><p><code>vim /etc/ssh/sshd_config</code></p>
-<p>将PermitRootLogin的值从withoutPassword改为yes，允许root用户进行登录</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">PermitRootLogin yes</span><br></pre></td></tr></table></figure>
-
-<h2 id="设置root用户登陆密码"><a href="#设置root用户登陆密码" class="headerlink" title="设置root用户登陆密码"></a>设置root用户登陆密码</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">passwd root</span><br></pre></td></tr></table></figure>
-
-<h2 id="重启SSH服务"><a href="#重启SSH服务" class="headerlink" title="重启SSH服务"></a>重启SSH服务</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">service ssh restart</span><br></pre></td></tr></table></figure>
-
-<h2 id="退出当前容器"><a href="#退出当前容器" class="headerlink" title="退出当前容器"></a>退出当前容器</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="保存镜像到本地"><a href="#保存镜像到本地" class="headerlink" title="保存镜像到本地"></a>保存镜像到本地</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker commit [containerID] [imagename]:[version]</span><br></pre></td></tr></table></figure>
-
-<h2 id="重启镜像"><a href="#重启镜像" class="headerlink" title="重启镜像"></a>重启镜像</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker run -it -d -p 8400:20 -p 8855:22 --name [containername] [imagename]:[tag]</span><br></pre></td></tr></table></figure>
-
-<h2 id="让容器保持运行"><a href="#让容器保持运行" class="headerlink" title="让容器保持运行"></a>让容器保持运行</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">docker update --restart=always &lt;containerID&gt;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>配置</category>
-      </categories>
-      <tags>
-        <tag>远程连接</tag>
-        <tag>SSH</tag>
-        <tag>Docker</tag>
       </tags>
   </entry>
   <entry>
