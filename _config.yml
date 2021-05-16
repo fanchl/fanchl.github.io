@@ -66,6 +66,11 @@ index_generator:
   per_page: 10
   order_by: -date
 
+archive_generator:
+  per_page: 50
+  yearly: true
+  monthly: true
+
 # Category & Tag
 default_category: uncategorized
 category_map:
@@ -106,3 +111,9 @@ deploy:
   type: git 
   repository: https://github.com/fanchl/fanchl.github.io.git
   branch: master
+
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000

@@ -1,7 +1,8 @@
 ---
 title: Pandas
-tags: 科学计算
-date: 2020-05-24
+tags: 机器学习
+date: 2020-03-14
+categories: 笔记
 ---
 
 

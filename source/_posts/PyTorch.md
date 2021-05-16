@@ -2,13 +2,13 @@
 title: PyTorch
 date: 2020-08-03
 tags: 
-    - 机器学习
     - 深度学习
+categories: 笔记
 ---
 
 ## Torch & Numpy
 
-Torch 自称为神经网络界的 Numpy, 因为他能将 torch 产生的 tensor 放在 GPU 中加速运算
+Torch 自称为神经网络界的 Numpy, 能将 torch 产生的 tensor 放在 GPU 中加速运算。
 
 <!-- more -->
 

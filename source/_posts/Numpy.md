@@ -1,7 +1,10 @@
 ---
 title: Numpy
 date: 2020-08-24
-tags: 科学计算
+tags: 
+       - 机器学习
+categories: 笔记
+
 ---
 
 ## array属性

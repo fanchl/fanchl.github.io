@@ -1,7 +1,9 @@
 ---
 title: OpenCV
-date: 2020-05-24
-tags: 计算机视觉
+date: 2020-03-24
+tags: 
+    - 机器学习
+categories: 笔记
 ---
 
 ### cv2.imread()
