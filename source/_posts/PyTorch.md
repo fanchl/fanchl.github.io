@@ -1,5 +1,5 @@
 ---
-title: PyTorch
+title: PyTorch 基础使用
 date: 2020-08-03
 tags: 
     - 深度学习

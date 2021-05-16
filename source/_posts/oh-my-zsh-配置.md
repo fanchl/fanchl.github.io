@@ -2,7 +2,7 @@
 title: oh-my-zsh 配置
 date: 2020-08-11
 tags:
-    - macOs
+    - macOS
     - 终端
 categories: 配置
 ---
