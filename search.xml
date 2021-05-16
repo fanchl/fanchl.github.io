@@ -180,69 +180,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Git 配置</title>
-    <url>/2020/03/16/Git-%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="Git-配置"><a href="#Git-配置" class="headerlink" title="Git 配置"></a>Git 配置</h1><h2 id="配置信息位置"><a href="#配置信息位置" class="headerlink" title="配置信息位置"></a>配置信息位置</h2><p><code>~/.gitconfig</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置git全局代理</span></span><br><span class="line">[http <span class="string">&quot;https://github.com&quot;</span>]</span><br><span class="line">	proxy = socks5://127.0.0.1:7890</span><br><span class="line">[user]</span><br><span class="line">	name = xxxxx</span><br><span class="line">	email = xxxxx</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-]]></content>
-      <categories>
-        <category>配置</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java 安装配置</title>
-    <url>/2021/03/24/Java-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="Java-安装配置"><a href="#Java-安装配置" class="headerlink" title="Java 安装配置"></a>Java 安装配置</h1><h2 id="一、Mac-自带JRE"><a href="#一、Mac-自带JRE" class="headerlink" title="一、Mac 自带JRE"></a>一、Mac 自带JRE</h2><p>终端输入</p>
-<span id="more"></span>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">/usr/libexec/java_home -V</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">Matching Java Virtual Machines (2):</span></span><br><span class="line"><span class="string">    1.8.281.09 (x86_64) &quot;Oracle Corporation&quot; - &quot;Java&quot; /Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home</span></span><br><span class="line"><span class="string">    1.8.0_281 (x86_64) &quot;Oracle Corporation&quot; - &quot;Java SE 8&quot; /Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home</span></span><br><span class="line"><span class="string">/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<p> macOS 自带 JRE，而不是 JDK</p>
-<p>选择目录 <code>/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home</code>，显示</p>
-<p><img src="https://i.loli.net/2021/05/16/49kSeP3BtL8qKVj.png" alt="Java%20%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%2057424c6814d946eaa916ccddd8bcdb9a/Untitled.png"></p>
-<h2 id="二、安装-JDK-8"><a href="#二、安装-JDK-8" class="headerlink" title="二、安装 JDK 8"></a>二、安装 JDK 8</h2><ol>
-<li><p>下载安装包安装</p>
-</li>
-<li><p>添加环境变量 </p>
-<p>在 <code>.zshrc</code> 文件中</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fan@MacBook-Pro  ~  java -version</span><br><span class="line">java version <span class="string">&quot;1.8.0_281&quot;</span></span><br><span class="line">Java(TM) SE Runtime Environment (build <span class="number">1.8</span><span class="number">.0_281</span>-b09)</span><br><span class="line">Java HotSpot(TM) <span class="number">64</span>-Bit Server VM (build <span class="number">25.281</span>-b09, mixed mode)</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>配置</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>macOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Java 正则表达式</title>
-    <url>/2021/05/14/Java-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
-    <content><![CDATA[<h1 id="Class-Pattern"><a href="#Class-Pattern" class="headerlink" title="Class Pattern"></a>Class Pattern</h1><h2 id="Pattern-类-与-Matcher-类"><a href="#Pattern-类-与-Matcher-类" class="headerlink" title="Pattern 类 与 Matcher 类"></a>Pattern 类 与 Matcher 类</h2><h3 id="一、捕获组的概念"><a href="#一、捕获组的概念" class="headerlink" title="一、捕获组的概念"></a>一、捕获组的概念</h3><p>捕获组可以通过从左到右计算其开括号来编号，<strong>编号从 1 开始</strong>。例如，在表达式 ((A)(B(C))) 中，存在四个组：</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">((A)(B(C)))</span><br><span class="line">(A)</span><br><span class="line">(B(C))</span><br><span class="line">(C)</span><br></pre></td></tr></table></figure>
-
-<p>组 0 代表整个表达式</p>
-<span id="more"></span>
-
-<h2 id="二、详解-Pattern-类与-Matcher-类"><a href="#二、详解-Pattern-类与-Matcher-类" class="headerlink" title="二、详解 Pattern 类与 Matcher 类"></a>二、详解 Pattern 类与 Matcher 类</h2><p>Java 正则表达式通过 <code>java.util.regex</code> 包下的 Pattern 类与 Matcher 类实现。</p>
-<p>Pattern 类用于创建一个正则表达式，创建一个 pattern，构造方法是私有的，不能够直接创建，需要通过 <code>Pattern.compile(String regex)</code> 创建一个正则表达式。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern p=Pattern.compile(<span class="string">&quot;\\w+&quot;</span>); </span><br><span class="line">p.pattern();<span class="comment">//返回 \w+</span></span><br></pre></td></tr></table></figure>
-
-<p>pattern() 返回正则表达式的字符串形式，其实就是返回 Pattern.complile(String regex) 的 regex 参数。</p>
-<h3 id="Pattern-matcher-CharSequence-input"><a href="#Pattern-matcher-CharSequence-input" class="headerlink" title="Pattern.matcher(CharSequence input)"></a><code>Pattern.matcher(CharSequence input)</code></h3><p>Pattern.matcher(CharSequence input)返回一个Matcher对象。</p>
-<p>Matcher 类的构造方法是私有的，不能够随意创建，只能通过该方法获取该类的实例。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern p=Pattern.compile(<span class="string">&quot;\\d+&quot;</span>); </span><br><span class="line">Matcher m=p.matcher(<span class="string">&quot;22bb23&quot;</span>); </span><br><span class="line">m.pattern();<span class="comment">//返回p 也就是返回该Matcher对象是由哪个Pattern对象的创建的</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Mathcer-start-Matcher-end-Matcher-group"><a href="#Mathcer-start-Matcher-end-Matcher-group" class="headerlink" title="Mathcer.start()/ Matcher.end()/ Matcher.group()"></a>Mathcer.start()/ Matcher.end()/ Matcher.group()</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern p=Pattern.compile(<span class="string">&quot;([a-z]+)(\\d+)&quot;</span>); </span><br><span class="line">Matcher m=p.matcher(<span class="string">&quot;aaa2223bb&quot;</span>); </span><br><span class="line">**m.find();   <span class="comment">//匹配aaa2223** </span></span><br><span class="line">m.groupCount();   <span class="comment">//返回2,因为有2组 </span></span><br><span class="line">m.start(<span class="number">1</span>);   <span class="comment">//返回0 返回第一组匹配到的子字符串在字符串中的索引号 </span></span><br><span class="line">m.start(<span class="number">2</span>);   <span class="comment">//返回3 </span></span><br><span class="line">m.end(<span class="number">1</span>);   <span class="comment">//返回3 返回第一组匹配到的子字符串的最后一个字符在字符串中的索引位置. </span></span><br><span class="line">m.end(<span class="number">2</span>);   <span class="comment">//返回7 </span></span><br><span class="line">m.group(<span class="number">1</span>);   <span class="comment">//返回aaa,返回第一组匹配到的子字符串 </span></span><br><span class="line">m.group(<span class="number">2</span>);   <span class="comment">//返回2223,返回第二组匹配到的子字符串</span></span><br></pre></td></tr></table></figure>]]></content>
-  </entry>
-  <entry>
     <title>Jupyter Notebook 服务器</title>
     <url>/2021/03/20/Jupyter-Notebook-%E6%9C%8D%E5%8A%A1%E5%99%A8/</url>
     <content><![CDATA[<h1 id="Jupyter-Notebook-服务器"><a href="#Jupyter-Notebook-服务器" class="headerlink" title="Jupyter Notebook 服务器"></a>Jupyter Notebook 服务器</h1><h2 id="1、-生成配置文件"><a href="#1、-生成配置文件" class="headerlink" title="1、 生成配置文件"></a>1、 生成配置文件</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python</span><br><span class="line">&gt;&gt; from notebook.auth import passwd</span><br><span class="line">&gt;&gt; passwd()</span><br><span class="line">Enter password: </span><br><span class="line">Verify password: </span><br><span class="line"><span class="string">&#x27;sha1:673a8456a8e8:4377bd9ee8dc33d4cb5a2011f7a89643de15c11c&#x27;</span></span><br></pre></td></tr></table></figure>
@@ -274,6 +211,69 @@
       <tags>
         <tag>Jupyter Notebook</tag>
         <tag>远程连接</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Java 正则表达式</title>
+    <url>/2021/05/14/Java-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</url>
+    <content><![CDATA[<h1 id="Pattern-类-与-Matcher-类"><a href="#Pattern-类-与-Matcher-类" class="headerlink" title="Pattern 类 与 Matcher 类"></a>Pattern 类 与 Matcher 类</h1><h2 id="一、捕获组的概念"><a href="#一、捕获组的概念" class="headerlink" title="一、捕获组的概念"></a>一、捕获组的概念</h2><p>捕获组可以通过从左到右计算其开括号来编号，<strong>编号从 1 开始</strong>。例如，在表达式 ((A)(B(C))) 中，存在四个组：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">((A)(B(C)))</span><br><span class="line">(A)</span><br><span class="line">(B(C))</span><br><span class="line">(C)</span><br></pre></td></tr></table></figure>
+
+<p>组 0 代表整个表达式</p>
+<span id="more"></span>
+
+<h2 id="二、详解-Pattern-类与-Matcher-类"><a href="#二、详解-Pattern-类与-Matcher-类" class="headerlink" title="二、详解 Pattern 类与 Matcher 类"></a>二、详解 Pattern 类与 Matcher 类</h2><p>Java 正则表达式通过 <code>java.util.regex</code> 包下的 Pattern 类与 Matcher 类实现。</p>
+<p>Pattern 类用于创建一个正则表达式，创建一个 pattern，构造方法是私有的，不能够直接创建，需要通过 <code>Pattern.compile(String regex)</code> 创建一个正则表达式。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern p=Pattern.compile(<span class="string">&quot;\\w+&quot;</span>); </span><br><span class="line">p.pattern();<span class="comment">//返回 \w+</span></span><br></pre></td></tr></table></figure>
+
+<p>pattern() 返回正则表达式的字符串形式，其实就是返回 Pattern.complile(String regex) 的 regex 参数。</p>
+<h3 id="Pattern-matcher-CharSequence-input"><a href="#Pattern-matcher-CharSequence-input" class="headerlink" title="Pattern.matcher(CharSequence input)"></a><code>Pattern.matcher(CharSequence input)</code></h3><p>Pattern.matcher(CharSequence input)返回一个Matcher对象。</p>
+<p>Matcher 类的构造方法是私有的，不能够随意创建，只能通过该方法获取该类的实例。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern p=Pattern.compile(<span class="string">&quot;\\d+&quot;</span>); </span><br><span class="line">Matcher m=p.matcher(<span class="string">&quot;22bb23&quot;</span>); </span><br><span class="line">m.pattern();<span class="comment">//返回p 也就是返回该Matcher对象是由哪个Pattern对象的创建的</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Mathcer-start-Matcher-end-Matcher-group"><a href="#Mathcer-start-Matcher-end-Matcher-group" class="headerlink" title="Mathcer.start()/ Matcher.end()/ Matcher.group()"></a>Mathcer.start()/ Matcher.end()/ Matcher.group()</h3><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">Pattern p=Pattern.compile(<span class="string">&quot;([a-z]+)(\\d+)&quot;</span>); </span><br><span class="line">Matcher m=p.matcher(<span class="string">&quot;aaa2223bb&quot;</span>); </span><br><span class="line">**m.find();   <span class="comment">//匹配aaa2223** </span></span><br><span class="line">m.groupCount();   <span class="comment">//返回2,因为有2组 </span></span><br><span class="line">m.start(<span class="number">1</span>);   <span class="comment">//返回0 返回第一组匹配到的子字符串在字符串中的索引号 </span></span><br><span class="line">m.start(<span class="number">2</span>);   <span class="comment">//返回3 </span></span><br><span class="line">m.end(<span class="number">1</span>);   <span class="comment">//返回3 返回第一组匹配到的子字符串的最后一个字符在字符串中的索引位置. </span></span><br><span class="line">m.end(<span class="number">2</span>);   <span class="comment">//返回7 </span></span><br><span class="line">m.group(<span class="number">1</span>);   <span class="comment">//返回aaa,返回第一组匹配到的子字符串 </span></span><br><span class="line">m.group(<span class="number">2</span>);   <span class="comment">//返回2223,返回第二组匹配到的子字符串</span></span><br></pre></td></tr></table></figure>]]></content>
+  </entry>
+  <entry>
+    <title>Java 安装配置</title>
+    <url>/2021/03/24/Java-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="Java-安装配置"><a href="#Java-安装配置" class="headerlink" title="Java 安装配置"></a>Java 安装配置</h1><h2 id="一、Mac-自带JRE"><a href="#一、Mac-自带JRE" class="headerlink" title="一、Mac 自带JRE"></a>一、Mac 自带JRE</h2><p>终端输入</p>
+<span id="more"></span>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">/usr/libexec/java_home -V</span><br><span class="line"></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">Matching Java Virtual Machines (2):</span></span><br><span class="line"><span class="string">    1.8.281.09 (x86_64) &quot;Oracle Corporation&quot; - &quot;Java&quot; /Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home</span></span><br><span class="line"><span class="string">    1.8.0_281 (x86_64) &quot;Oracle Corporation&quot; - &quot;Java SE 8&quot; /Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home</span></span><br><span class="line"><span class="string">/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p> macOS 自带 JRE，而不是 JDK</p>
+<p>选择目录 <code>/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home</code>，显示</p>
+<p><img src="https://i.loli.net/2021/05/16/49kSeP3BtL8qKVj.png" alt="Java%20%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%2057424c6814d946eaa916ccddd8bcdb9a/Untitled.png"></p>
+<h2 id="二、安装-JDK-8"><a href="#二、安装-JDK-8" class="headerlink" title="二、安装 JDK 8"></a>二、安装 JDK 8</h2><ol>
+<li><p>下载安装包安装</p>
+</li>
+<li><p>添加环境变量 </p>
+<p>在 <code>.zshrc</code> 文件中</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">fan@MacBook-Pro  ~  java -version</span><br><span class="line">java version <span class="string">&quot;1.8.0_281&quot;</span></span><br><span class="line">Java(TM) SE Runtime Environment (build <span class="number">1.8</span><span class="number">.0_281</span>-b09)</span><br><span class="line">Java HotSpot(TM) <span class="number">64</span>-Bit Server VM (build <span class="number">25.281</span>-b09, mixed mode)</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>配置</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>macOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Git 配置</title>
+    <url>/2020/03/16/Git-%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="Git-配置"><a href="#Git-配置" class="headerlink" title="Git 配置"></a>Git 配置</h1><h2 id="配置信息位置"><a href="#配置信息位置" class="headerlink" title="配置信息位置"></a>配置信息位置</h2><p><code>~/.gitconfig</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置git全局代理</span></span><br><span class="line">[http <span class="string">&quot;https://github.com&quot;</span>]</span><br><span class="line">	proxy = socks5://127.0.0.1:7890</span><br><span class="line">[user]</span><br><span class="line">	name = xxxxx</span><br><span class="line">	email = xxxxx</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+]]></content>
+      <categories>
+        <category>配置</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -771,6 +771,54 @@
       </tags>
   </entry>
   <entry>
+    <title>Pytorch DDP</title>
+    <url>/2021/05/05/Pytorch-DDP/</url>
+    <content><![CDATA[<h2 id="DDP-原理"><a href="#DDP-原理" class="headerlink" title="DDP 原理"></a>DDP 原理</h2><ul>
+<li>在分类上，DDP 属于 Data Parallel。简单来说，就是通过提高 batch size 来增加并行度。</li>
+<li>通过 Ring-Reduce 的数据交换方法提高了通信效率，并通过启动多个进程的方式减轻 Python GIL 的限制，从而提高训练速度。</li>
+</ul>
+<span id="more"></span>
+
+<p>假如有 N 张显卡</p>
+<ol>
+<li>在 DDP 模式下，会有 N 个进程被启动，每个进程在一张卡上加载一个模型，这些模型的参数在数值上是相同的。</li>
+<li>（Ring-Reduce 加速）在模型训练时，各个进程通过 Ring-Reduce 方法与其他进程通信，交换各自的梯度，从而获得所有进程的梯度。</li>
+<li>各个进程用平均后的梯度更新自己的参数，因为各个进程的初始参数、更新梯度一致，所以更新后的参数也完全相同。</li>
+</ol>
+<h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><p>在 16 张显卡，16 的并行数下， DDP会同时启动 16 个进程。</p>
+<p><code>group</code> 进程组。默认情况下，只有一个组。</p>
+<p><code>world size</code> 全局的并行数。</p>
+<p><code>rank</code> 表示当前进程的序号，用于进程间通信。对于 16 的 world size 来说，就是 0, 1, 2, … , 15。rank = 0  的进程就是 master 进程。</p>
+<p><code>local_rank</code> 表示每台机器上的进程的序号。机器一上有 0, 1, 2, … , 7；机器二上也有 0, 1, 2, … , 7。</p>
+<h2 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">python -m torch.distributed.launch --nproc_per_node=NUM_GPUS_YOU_HAVE train.py</span><br></pre></td></tr></table></figure>
+
+<p>其中 torch.distributed.launch 表示以分布式的方式启动训练，—nproc_per_node 指定一共多少节点，可以设置成显卡的个数。</p>
+<p><strong>启动之后每个进程可以自动获取到参数</strong></p>
+<p>local_rank 表示的是进程的优先级，该优先级是自动分配的。<em>不需要赋值，启动命令 torch.distributed.launch会自动赋值。</em></p>
+<p>world size 表示的一共运行的进程数，和 nproc_per_node 设置的数值相对应。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">################</span></span><br><span class="line"><span class="comment">## main.py文件</span></span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="comment"># 新增：</span></span><br><span class="line"><span class="keyword">import</span> torch.distributed <span class="keyword">as</span> dist</span><br><span class="line"><span class="keyword">from</span> torch.nn.parallel <span class="keyword">import</span> DistributedDataParallel <span class="keyword">as</span> DDP</span><br><span class="line"></span><br><span class="line"><span class="comment">### 1. 基础模块 ### </span></span><br><span class="line"><span class="comment"># 假设我们的模型是这个，与DDP无关</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ToyModel</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">super</span>(ToyModel, self).__init__()</span><br><span class="line">        self.conv1 = nn.Conv2d(<span class="number">3</span>, <span class="number">6</span>, <span class="number">5</span>)</span><br><span class="line">        self.pool = nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">        self.conv2 = nn.Conv2d(<span class="number">6</span>, <span class="number">16</span>, <span class="number">5</span>)</span><br><span class="line">        self.fc1 = nn.Linear(<span class="number">16</span> * <span class="number">5</span> * <span class="number">5</span>, <span class="number">120</span>)</span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">120</span>, <span class="number">84</span>)</span><br><span class="line">        self.fc3 = nn.Linear(<span class="number">84</span>, <span class="number">10</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        x = self.pool(F.relu(self.conv1(x)))</span><br><span class="line">        x = self.pool(F.relu(self.conv2(x)))</span><br><span class="line">        x = x.view(-<span class="number">1</span>, <span class="number">16</span> * <span class="number">5</span> * <span class="number">5</span>)</span><br><span class="line">        x = F.relu(self.fc1(x))</span><br><span class="line">        x = F.relu(self.fc2(x))</span><br><span class="line">        x = self.fc3(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"><span class="comment"># 假设我们的数据是这个</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_dataset</span>():</span></span><br><span class="line">    transform = torchvision.transforms.Compose([</span><br><span class="line">        torchvision.transforms.ToTensor(),</span><br><span class="line">        torchvision.transforms.Normalize((<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>), (<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>))</span><br><span class="line">    ])</span><br><span class="line">    my_trainset = torchvision.datasets.CIFAR10(root=<span class="string">&#x27;./data&#x27;</span>, train=<span class="literal">True</span>, </span><br><span class="line">        download=<span class="literal">True</span>, transform=transform)</span><br><span class="line">    <span class="comment"># DDP：使用DistributedSampler，DDP帮我们把细节都封装起来了。</span></span><br><span class="line">    <span class="comment">#      用，就完事儿！sampler的原理，第二篇中有介绍。</span></span><br><span class="line">    train_sampler = torch.utils.data.distributed.DistributedSampler(my_trainset)</span><br><span class="line">    <span class="comment"># DDP：需要注意的是，这里的batch_size指的是每个进程下的batch_size。</span></span><br><span class="line">    <span class="comment">#      也就是说，总batch_size是这里的batch_size再乘以并行数(world_size)。</span></span><br><span class="line">    trainloader = torch.utils.data.DataLoader(my_trainset, </span><br><span class="line">        batch_size=<span class="number">16</span>, num_workers=<span class="number">2</span>, sampler=train_sampler)</span><br><span class="line">    <span class="keyword">return</span> trainloader</span><br><span class="line">    </span><br><span class="line"><span class="comment">### 2. 初始化我们的模型、数据、各种配置  ####</span></span><br><span class="line"><span class="comment"># DDP：从外部得到local_rank参数</span></span><br><span class="line">parser = argparse.ArgumentParser()</span><br><span class="line">parser.add_argument(<span class="string">&quot;--local_rank&quot;</span>, default=-<span class="number">1</span>, <span class="built_in">type</span>=<span class="built_in">int</span>)</span><br><span class="line">FLAGS = parser.parse_args()</span><br><span class="line">local_rank = FLAGS.local_rank</span><br><span class="line"></span><br><span class="line"><span class="comment"># DDP：DDP backend初始化</span></span><br><span class="line">torch.cuda.set_device(local_rank)</span><br><span class="line">dist.init_process_group(backend=<span class="string">&#x27;nccl&#x27;</span>)  <span class="comment"># nccl是GPU设备上最快、最推荐的后端</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 准备数据，要在DDP初始化之后进行</span></span><br><span class="line">trainloader = get_dataset()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构造模型</span></span><br><span class="line">model = ToyModel().to(local_rank)</span><br><span class="line"><span class="comment"># DDP: Load模型要在构造DDP模型之前，且只需要在master上加载就行了。</span></span><br><span class="line">ckpt_path = <span class="literal">None</span></span><br><span class="line"><span class="keyword">if</span> dist.get_rank() == <span class="number">0</span> <span class="keyword">and</span> ckpt_path <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">    model.load_state_dict(torch.load(ckpt_path))</span><br><span class="line"><span class="comment"># DDP: 构造DDP model</span></span><br><span class="line">model = DDP(model, device_ids=[local_rank], output_device=local_rank)</span><br><span class="line"></span><br><span class="line"><span class="comment"># DDP: 要在构造DDP model之后，才能用model初始化optimizer。</span></span><br><span class="line">optimizer = torch.optim.SGD(model.parameters(), lr=<span class="number">0.001</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 假设我们的loss是这个</span></span><br><span class="line">loss_func = nn.CrossEntropyLoss().to(local_rank)</span><br><span class="line"></span><br><span class="line"><span class="comment">### 3. 网络训练  ###</span></span><br><span class="line">model.train()</span><br><span class="line">iterator = tqdm(<span class="built_in">range</span>(<span class="number">100</span>))</span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> iterator:</span><br><span class="line">    <span class="comment"># DDP：设置sampler的epoch，</span></span><br><span class="line">    <span class="comment"># DistributedSampler需要这个来指定shuffle方式，</span></span><br><span class="line">    <span class="comment"># 通过维持各个进程之间的相同随机数种子使不同进程能获得同样的shuffle效果。</span></span><br><span class="line">    trainloader.sampler.set_epoch(epoch)</span><br><span class="line">    <span class="comment"># 后面这部分，则与原来完全一致了。</span></span><br><span class="line">    <span class="keyword">for</span> data, label <span class="keyword">in</span> trainloader:</span><br><span class="line">        data, label = data.to(local_rank), label.to(local_rank)</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        prediction = model(data)</span><br><span class="line">        loss = loss_func(prediction, label)</span><br><span class="line">        loss.backward()</span><br><span class="line">        iterator.desc = <span class="string">&quot;loss = %0.3f&quot;</span> % loss</span><br><span class="line">        optimizer.step()</span><br><span class="line">    <span class="comment"># DDP:</span></span><br><span class="line">    <span class="comment"># 1. save模型的时候，和DP模式一样，有一个需要注意的点：保存的是model.module而不是model。</span></span><br><span class="line">    <span class="comment">#    因为model其实是DDP model，参数是被`model=DDP(model)`包起来的。</span></span><br><span class="line">    <span class="comment"># 2. 只需要在进程0上保存一次就行了，避免多次保存重复的东西。</span></span><br><span class="line">    <span class="keyword">if</span> dist.get_rank() == <span class="number">0</span>:</span><br><span class="line">        torch.save(model.module.state_dict(), <span class="string">&quot;%d.ckpt&quot;</span> % epoch)</span><br><span class="line"></span><br><span class="line"><span class="comment">################</span></span><br><span class="line"><span class="comment">## Bash运行</span></span><br><span class="line"><span class="comment"># DDP: 使用torch.distributed.launch启动DDP模式</span></span><br><span class="line"><span class="comment"># 使用CUDA_VISIBLE_DEVICES，来决定使用哪些GPU</span></span><br><span class="line"><span class="comment"># CUDA_VISIBLE_DEVICES=&quot;0,1&quot; python -m torch.distributed.launch --nproc_per_node 2 main.py</span></span><br></pre></td></tr></table></figure>
+
+<p>新增：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"></span><br><span class="line">parser = argparse.ArgumentParser()</span><br><span class="line">parser.add_argument(<span class="string">&quot;--local_rank&quot;</span>, default=-<span class="number">1</span>, <span class="built_in">type</span>=<span class="built_in">int</span>)</span><br><span class="line">FLAGS = parser.parse_args()</span><br><span class="line">local_rank = FLAGS.local_rank</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.utils.data.distributed <span class="keyword">import</span> DistributedSampler</span><br><span class="line"><span class="keyword">import</span> torch.distributed <span class="keyword">as</span> dist</span><br><span class="line"><span class="keyword">from</span> torch.nn.parallel <span class="keyword">import</span> DistributedDataParallel <span class="keyword">as</span> DDP</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">torch.cuda.set_device(local_rank)</span><br><span class="line">dist.init_process_group(backend=<span class="string">&#x27;nccl&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model.to(local_rank)</span><br><span class="line">model = DDP(model, device_ids=[local_rank], output_device=[local_rank])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">train_dataloader.sampler.set_epoch(epoch)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">model.module.forword()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">CUDA_VISIBLE_DEVICES=<span class="string">&quot;0,1&quot;</span> python -m torch.distributed.launch --nproc_per_node <span class="number">2</span> main.py</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>SSH 互信机制</title>
     <url>/2021/04/21/SSH%E4%BA%92%E4%BF%A1%E6%9C%BA%E5%88%B6/</url>
     <content><![CDATA[<h1 id="SSH-互信机制"><a href="#SSH-互信机制" class="headerlink" title="SSH 互信机制"></a>SSH 互信机制</h1><ol>
@@ -878,55 +926,6 @@
         <tag>Linux</tag>
         <tag>远程连接</tag>
         <tag>SSH</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vim 配置</title>
-    <url>/2021/01/18/Vim%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="Vim-配置"><a href="#Vim-配置" class="headerlink" title="Vim 配置"></a>Vim 配置</h1><p>Vim编辑器相关的所有功能开关都可以通过 <strong><code>.vimrc</code></strong> 文件进行设置。 </p>
-<p>**<code>.vimrc</code>**配置文件分系统配置和用户配置两种。</p>
-<ul>
-<li>系统vimrc配置文件存放在Vim的安装目录，默认路径为<code>/usr/share/vim/.vimrc</code>。可以使用命令<code>echo $VIM</code>来确定Vim的安装目录。</li>
-<li>用户vimrc文件，存放在用户主目录下<code>~/.vimrc</code>。可以使用命令<code>echo $HOME</code>确定用户主目录。</li>
-</ul>
-<p><em>注意</em>：用户配置文件优先于系统配置文件，Vim启动时会优先读取当前用户根目录下的**.vimrc**文件。所以与个人用户相关的个性化配置一般都放在<code>~/.vimrc</code>中。</p>
-<span id="more"></span>
-
-<h2 id="使更改生效"><a href="#使更改生效" class="headerlink" title="使更改生效"></a>使更改生效</h2><p>要让.vimrc变更内容生效，一般的做法是先保存 .vimrc 再重启vim，增加如下设置，可以实现保存 .vimrc 时自动重启加载。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;让vimrc配置变更立即生效&#x27;</span></span><br><span class="line">autocmd BufWritePost <span class="variable">$MYVIMRC</span> <span class="built_in">source</span> <span class="variable">$MYVIMRC</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="一、基础设置"><a href="#一、基础设置" class="headerlink" title="一、基础设置"></a>一、基础设置</h2><h3 id="1、设置中文不乱码"><a href="#1、设置中文不乱码" class="headerlink" title="1、设置中文不乱码"></a>1、设置中文不乱码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;设置编码&#x27;</span></span><br><span class="line"><span class="built_in">set</span> fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936</span><br><span class="line"><span class="built_in">set</span> termencoding=utf-8</span><br><span class="line"><span class="built_in">set</span> encoding=utf-8</span><br></pre></td></tr></table></figure>
-
-<h3 id="2、显示行号"><a href="#2、显示行号" class="headerlink" title="2、显示行号"></a>2、显示行号</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;显示行号&#x27;</span></span><br><span class="line"><span class="built_in">set</span> nu</span><br><span class="line"><span class="built_in">set</span> number</span><br></pre></td></tr></table></figure>
-
-<h3 id="3、突出显示当前行"><a href="#3、突出显示当前行" class="headerlink" title="3、突出显示当前行"></a>3、突出显示当前行</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> cursorline</span><br><span class="line"><span class="built_in">set</span> cul          <span class="string">&#x27;cursorline的缩写形式&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="4、启用鼠标"><a href="#4、启用鼠标" class="headerlink" title="4、启用鼠标"></a>4、启用鼠标</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> mouse=a</span><br><span class="line"><span class="built_in">set</span> selection=exclusive</span><br><span class="line"><span class="built_in">set</span> selectmode=mouse,key</span><br></pre></td></tr></table></figure>
-
-<p>Vim编辑器里默认是不启用鼠标的，也就是说不管你鼠标点击哪个位置，光标都不会移动。通过以上设置就可以启动鼠标。</p>
-<h3 id="5、设置缩进"><a href="#5、设置缩进" class="headerlink" title="5、设置缩进"></a>5、设置缩进</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;设置Tab长度为4空格&#x27;</span></span><br><span class="line"><span class="built_in">set</span> tabstop=4</span><br><span class="line"><span class="string">&#x27;设置自动缩进长度为4空格&#x27;</span></span><br><span class="line"><span class="built_in">set</span> shiftwidth=4</span><br><span class="line"><span class="string">&#x27;继承前一行的缩进方式，适用于多行注释&#x27;</span></span><br><span class="line"><span class="built_in">set</span> autoindent</span><br></pre></td></tr></table></figure>
-
-<h2 id="二、主题配置"><a href="#二、主题配置" class="headerlink" title="二、主题配置"></a>二、主题配置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.vim</span><br><span class="line">git <span class="built_in">clone</span> https://gitclone.com/github.com/flazz/vim-colorschemes.git ~/.vim</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># .vimrc</span></span><br><span class="line">colorscheme janah</span><br></pre></td></tr></table></figure>
-
-<h2 id="三、整体配置"><a href="#三、整体配置" class="headerlink" title="三、整体配置"></a>三、整体配置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936</span><br><span class="line"><span class="built_in">set</span> termencoding=utf-8</span><br><span class="line"><span class="built_in">set</span> encoding=utf-8</span><br><span class="line"><span class="built_in">set</span> nu</span><br><span class="line"><span class="built_in">set</span> number</span><br><span class="line"><span class="built_in">set</span> mouse=a</span><br><span class="line"><span class="built_in">set</span> selection=exclusive</span><br><span class="line"><span class="built_in">set</span> selectmode=mouse,key</span><br><span class="line"><span class="built_in">set</span> tabstop=4</span><br><span class="line"><span class="built_in">set</span> shiftwidth=4</span><br><span class="line"><span class="built_in">set</span> autoindent</span><br><span class="line"></span><br><span class="line">colorscheme janah</span><br></pre></td></tr></table></figure>
-
-<h2 id="四、推荐配置"><a href="#四、推荐配置" class="headerlink" title="四、推荐配置"></a>四、推荐配置</h2><p>配置可以直接使用网友共享的优化配置：</p>
-<p><a href="https://github.com/amix/vimrc">https://github.com/amix/vimrc</a></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --depth=1 https://gitclone.com/github.com/amix/vimrc.git ~/.vim_runtime</span><br><span class="line">sh ~/.vim_runtime/install_awesome_vimrc.sh</span><br></pre></td></tr></table></figure>
-
-<p>Vim Plugins - NERDTree</p>
-<p>Vim插件，装了这个插件，便可以显示树形目录结构。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://gitclone.com/github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree</span><br></pre></td></tr></table></figure>
-
-<p>重启Vim，在命令模式下输入NERDTree即可开启目录展示，默认是当前路径。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">:NERDTree</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>配置</category>
-      </categories>
-      <tags>
-        <tag>Vim</tag>
       </tags>
   </entry>
   <entry>
@@ -1212,6 +1211,75 @@
       </tags>
   </entry>
   <entry>
+    <title>Vim 配置</title>
+    <url>/2021/01/18/Vim%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="Vim-配置"><a href="#Vim-配置" class="headerlink" title="Vim 配置"></a>Vim 配置</h1><p>Vim编辑器相关的所有功能开关都可以通过 <strong><code>.vimrc</code></strong> 文件进行设置。 </p>
+<p>**<code>.vimrc</code>**配置文件分系统配置和用户配置两种。</p>
+<ul>
+<li>系统vimrc配置文件存放在Vim的安装目录，默认路径为<code>/usr/share/vim/.vimrc</code>。可以使用命令<code>echo $VIM</code>来确定Vim的安装目录。</li>
+<li>用户vimrc文件，存放在用户主目录下<code>~/.vimrc</code>。可以使用命令<code>echo $HOME</code>确定用户主目录。</li>
+</ul>
+<p><em>注意</em>：用户配置文件优先于系统配置文件，Vim启动时会优先读取当前用户根目录下的**.vimrc**文件。所以与个人用户相关的个性化配置一般都放在<code>~/.vimrc</code>中。</p>
+<span id="more"></span>
+
+<h2 id="使更改生效"><a href="#使更改生效" class="headerlink" title="使更改生效"></a>使更改生效</h2><p>要让.vimrc变更内容生效，一般的做法是先保存 .vimrc 再重启vim，增加如下设置，可以实现保存 .vimrc 时自动重启加载。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;让vimrc配置变更立即生效&#x27;</span></span><br><span class="line">autocmd BufWritePost <span class="variable">$MYVIMRC</span> <span class="built_in">source</span> <span class="variable">$MYVIMRC</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="一、基础设置"><a href="#一、基础设置" class="headerlink" title="一、基础设置"></a>一、基础设置</h2><h3 id="1、设置中文不乱码"><a href="#1、设置中文不乱码" class="headerlink" title="1、设置中文不乱码"></a>1、设置中文不乱码</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;设置编码&#x27;</span></span><br><span class="line"><span class="built_in">set</span> fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936</span><br><span class="line"><span class="built_in">set</span> termencoding=utf-8</span><br><span class="line"><span class="built_in">set</span> encoding=utf-8</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、显示行号"><a href="#2、显示行号" class="headerlink" title="2、显示行号"></a>2、显示行号</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;显示行号&#x27;</span></span><br><span class="line"><span class="built_in">set</span> nu</span><br><span class="line"><span class="built_in">set</span> number</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、突出显示当前行"><a href="#3、突出显示当前行" class="headerlink" title="3、突出显示当前行"></a>3、突出显示当前行</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> cursorline</span><br><span class="line"><span class="built_in">set</span> cul          <span class="string">&#x27;cursorline的缩写形式&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4、启用鼠标"><a href="#4、启用鼠标" class="headerlink" title="4、启用鼠标"></a>4、启用鼠标</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> mouse=a</span><br><span class="line"><span class="built_in">set</span> selection=exclusive</span><br><span class="line"><span class="built_in">set</span> selectmode=mouse,key</span><br></pre></td></tr></table></figure>
+
+<p>Vim编辑器里默认是不启用鼠标的，也就是说不管你鼠标点击哪个位置，光标都不会移动。通过以上设置就可以启动鼠标。</p>
+<h3 id="5、设置缩进"><a href="#5、设置缩进" class="headerlink" title="5、设置缩进"></a>5、设置缩进</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&#x27;设置Tab长度为4空格&#x27;</span></span><br><span class="line"><span class="built_in">set</span> tabstop=4</span><br><span class="line"><span class="string">&#x27;设置自动缩进长度为4空格&#x27;</span></span><br><span class="line"><span class="built_in">set</span> shiftwidth=4</span><br><span class="line"><span class="string">&#x27;继承前一行的缩进方式，适用于多行注释&#x27;</span></span><br><span class="line"><span class="built_in">set</span> autoindent</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、主题配置"><a href="#二、主题配置" class="headerlink" title="二、主题配置"></a>二、主题配置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mkdir ~/.vim</span><br><span class="line">git <span class="built_in">clone</span> https://gitclone.com/github.com/flazz/vim-colorschemes.git ~/.vim</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># .vimrc</span></span><br><span class="line">colorscheme janah</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、整体配置"><a href="#三、整体配置" class="headerlink" title="三、整体配置"></a>三、整体配置</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">set</span> fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936</span><br><span class="line"><span class="built_in">set</span> termencoding=utf-8</span><br><span class="line"><span class="built_in">set</span> encoding=utf-8</span><br><span class="line"><span class="built_in">set</span> nu</span><br><span class="line"><span class="built_in">set</span> number</span><br><span class="line"><span class="built_in">set</span> mouse=a</span><br><span class="line"><span class="built_in">set</span> selection=exclusive</span><br><span class="line"><span class="built_in">set</span> selectmode=mouse,key</span><br><span class="line"><span class="built_in">set</span> tabstop=4</span><br><span class="line"><span class="built_in">set</span> shiftwidth=4</span><br><span class="line"><span class="built_in">set</span> autoindent</span><br><span class="line"></span><br><span class="line">colorscheme janah</span><br></pre></td></tr></table></figure>
+
+<h2 id="四、推荐配置"><a href="#四、推荐配置" class="headerlink" title="四、推荐配置"></a>四、推荐配置</h2><p>配置可以直接使用网友共享的优化配置：</p>
+<p><a href="https://github.com/amix/vimrc">https://github.com/amix/vimrc</a></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> --depth=1 https://gitclone.com/github.com/amix/vimrc.git ~/.vim_runtime</span><br><span class="line">sh ~/.vim_runtime/install_awesome_vimrc.sh</span><br></pre></td></tr></table></figure>
+
+<p>Vim Plugins - NERDTree</p>
+<p>Vim插件，装了这个插件，便可以显示树形目录结构。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://gitclone.com/github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree</span><br></pre></td></tr></table></figure>
+
+<p>重启Vim，在命令模式下输入NERDTree即可开启目录展示，默认是当前路径。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">:NERDTree</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>配置</category>
+      </categories>
+      <tags>
+        <tag>Vim</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2017/05/24/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<span id="more"></span>
+
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>oh-my-zsh 配置</title>
     <url>/2020/08/11/oh-my-zsh-%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="oh-my-zsh-配置"><a href="#oh-my-zsh-配置" class="headerlink" title="oh-my-zsh 配置"></a>oh-my-zsh 配置</h1><h2 id="一、clone-项目"><a href="#一、clone-项目" class="headerlink" title="一、clone 项目"></a>一、clone 项目</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com.cnpmjs.org/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</span><br></pre></td></tr></table></figure>
@@ -1273,7 +1341,7 @@
         <category>配置</category>
       </categories>
       <tags>
-        <tag>macOs</tag>
+        <tag>macOS</tag>
         <tag>终端</tag>
       </tags>
   </entry>
@@ -1313,26 +1381,6 @@
       <tags>
         <tag>Linux</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2017/05/24/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<span id="more"></span>
-
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
   </entry>
   <entry>
     <title>给容器安装 SSH 服务</title>
@@ -1526,7 +1574,7 @@
       </tags>
   </entry>
   <entry>
-    <title>PyTorch</title>
+    <title>PyTorch 基础使用</title>
     <url>/2020/08/03/PyTorch/</url>
     <content><![CDATA[<h2 id="Torch-amp-Numpy"><a href="#Torch-amp-Numpy" class="headerlink" title="Torch &amp; Numpy"></a>Torch &amp; Numpy</h2><p>Torch 自称为神经网络界的 Numpy, 能将 torch 产生的 tensor 放在 GPU 中加速运算。</p>
 <span id="more"></span>

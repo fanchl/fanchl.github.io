@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"fanchl.github.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="DDP 原理 在分类上，DDP 属于 Data Parallel。简单来说，就是通过提高 batch size 来增加并行度。 通过 Ring-Reduce 的数据交换方法提高了通信效率，并通过启动多个进程的方式减轻 Python GIL 的限制，从而提高训练速度。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Pytorch DDP">
+<meta property="og:url" content="https://fanchl.github.com/2021/05/05/Pytorch-DDP/index.html">
+<meta property="og:site_name" content="fanchl&#39;s blog">
+<meta property="og:description" content="DDP 原理 在分类上，DDP 属于 Data Parallel。简单来说，就是通过提高 batch size 来增加并行度。 通过 Ring-Reduce 的数据交换方法提高了通信效率，并通过启动多个进程的方式减轻 Python GIL 的限制，从而提高训练速度。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-05T03:06:35.000Z">
+<meta property="article:modified_time" content="2021-05-16T03:07:43.159Z">
+<meta property="article:author" content="fanchl">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://fanchl.github.com/2021/05/05/Pytorch-DDP/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Pytorch DDP | fanchl's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">fanchl's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">模式识别研究生</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2021/05/05/Pytorch-DDP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="fanchl">
+      <meta itemprop="description" content="日拱一卒，功不唐捐。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fanchl's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Pytorch DDP
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-05 11:06:35" itemprop="dateCreated datePublished" datetime="2021-05-05T11:06:35+08:00">2021-05-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="DDP-原理"><a href="#DDP-原理" class="headerlink" title="DDP 原理"></a>DDP 原理</h2><ul>
+<li>在分类上，DDP 属于 Data Parallel。简单来说，就是通过提高 batch size 来增加并行度。</li>
+<li>通过 Ring-Reduce 的数据交换方法提高了通信效率，并通过启动多个进程的方式减轻 Python GIL 的限制，从而提高训练速度。</li>
+</ul>
+<span id="more"></span>
+
+<p>假如有 N 张显卡</p>
+<ol>
+<li>在 DDP 模式下，会有 N 个进程被启动，每个进程在一张卡上加载一个模型，这些模型的参数在数值上是相同的。</li>
+<li>（Ring-Reduce 加速）在模型训练时，各个进程通过 Ring-Reduce 方法与其他进程通信，交换各自的梯度，从而获得所有进程的梯度。</li>
+<li>各个进程用平均后的梯度更新自己的参数，因为各个进程的初始参数、更新梯度一致，所以更新后的参数也完全相同。</li>
+</ol>
+<h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><p>在 16 张显卡，16 的并行数下， DDP会同时启动 16 个进程。</p>
+<p><code>group</code> 进程组。默认情况下，只有一个组。</p>
+<p><code>world size</code> 全局的并行数。</p>
+<p><code>rank</code> 表示当前进程的序号，用于进程间通信。对于 16 的 world size 来说，就是 0, 1, 2, … , 15。rank = 0  的进程就是 master 进程。</p>
+<p><code>local_rank</code> 表示每台机器上的进程的序号。机器一上有 0, 1, 2, … , 7；机器二上也有 0, 1, 2, … , 7。</p>
+<h2 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m torch.distributed.launch --nproc_per_node=NUM_GPUS_YOU_HAVE train.py</span><br></pre></td></tr></table></figure>
+
+<p>其中 torch.distributed.launch 表示以分布式的方式启动训练，—nproc_per_node 指定一共多少节点，可以设置成显卡的个数。</p>
+<p><strong>启动之后每个进程可以自动获取到参数</strong></p>
+<p>local_rank 表示的是进程的优先级，该优先级是自动分配的。<em>不需要赋值，启动命令 torch.distributed.launch会自动赋值。</em></p>
+<p>world size 表示的一共运行的进程数，和 nproc_per_node 设置的数值相对应。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">################</span></span><br><span class="line"><span class="comment">## main.py文件</span></span><br><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="comment"># 新增：</span></span><br><span class="line"><span class="keyword">import</span> torch.distributed <span class="keyword">as</span> dist</span><br><span class="line"><span class="keyword">from</span> torch.nn.parallel <span class="keyword">import</span> DistributedDataParallel <span class="keyword">as</span> DDP</span><br><span class="line"></span><br><span class="line"><span class="comment">### 1. 基础模块 ### </span></span><br><span class="line"><span class="comment"># 假设我们的模型是这个，与DDP无关</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ToyModel</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">super</span>(ToyModel, self).__init__()</span><br><span class="line">        self.conv1 = nn.Conv2d(<span class="number">3</span>, <span class="number">6</span>, <span class="number">5</span>)</span><br><span class="line">        self.pool = nn.MaxPool2d(<span class="number">2</span>, <span class="number">2</span>)</span><br><span class="line">        self.conv2 = nn.Conv2d(<span class="number">6</span>, <span class="number">16</span>, <span class="number">5</span>)</span><br><span class="line">        self.fc1 = nn.Linear(<span class="number">16</span> * <span class="number">5</span> * <span class="number">5</span>, <span class="number">120</span>)</span><br><span class="line">        self.fc2 = nn.Linear(<span class="number">120</span>, <span class="number">84</span>)</span><br><span class="line">        self.fc3 = nn.Linear(<span class="number">84</span>, <span class="number">10</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x</span>):</span></span><br><span class="line">        x = self.pool(F.relu(self.conv1(x)))</span><br><span class="line">        x = self.pool(F.relu(self.conv2(x)))</span><br><span class="line">        x = x.view(-<span class="number">1</span>, <span class="number">16</span> * <span class="number">5</span> * <span class="number">5</span>)</span><br><span class="line">        x = F.relu(self.fc1(x))</span><br><span class="line">        x = F.relu(self.fc2(x))</span><br><span class="line">        x = self.fc3(x)</span><br><span class="line">        <span class="keyword">return</span> x</span><br><span class="line"><span class="comment"># 假设我们的数据是这个</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_dataset</span>():</span></span><br><span class="line">    transform = torchvision.transforms.Compose([</span><br><span class="line">        torchvision.transforms.ToTensor(),</span><br><span class="line">        torchvision.transforms.Normalize((<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>), (<span class="number">0.5</span>, <span class="number">0.5</span>, <span class="number">0.5</span>))</span><br><span class="line">    ])</span><br><span class="line">    my_trainset = torchvision.datasets.CIFAR10(root=<span class="string">&#x27;./data&#x27;</span>, train=<span class="literal">True</span>, </span><br><span class="line">        download=<span class="literal">True</span>, transform=transform)</span><br><span class="line">    <span class="comment"># DDP：使用DistributedSampler，DDP帮我们把细节都封装起来了。</span></span><br><span class="line">    <span class="comment">#      用，就完事儿！sampler的原理，第二篇中有介绍。</span></span><br><span class="line">    train_sampler = torch.utils.data.distributed.DistributedSampler(my_trainset)</span><br><span class="line">    <span class="comment"># DDP：需要注意的是，这里的batch_size指的是每个进程下的batch_size。</span></span><br><span class="line">    <span class="comment">#      也就是说，总batch_size是这里的batch_size再乘以并行数(world_size)。</span></span><br><span class="line">    trainloader = torch.utils.data.DataLoader(my_trainset, </span><br><span class="line">        batch_size=<span class="number">16</span>, num_workers=<span class="number">2</span>, sampler=train_sampler)</span><br><span class="line">    <span class="keyword">return</span> trainloader</span><br><span class="line">    </span><br><span class="line"><span class="comment">### 2. 初始化我们的模型、数据、各种配置  ####</span></span><br><span class="line"><span class="comment"># DDP：从外部得到local_rank参数</span></span><br><span class="line">parser = argparse.ArgumentParser()</span><br><span class="line">parser.add_argument(<span class="string">&quot;--local_rank&quot;</span>, default=-<span class="number">1</span>, <span class="built_in">type</span>=<span class="built_in">int</span>)</span><br><span class="line">FLAGS = parser.parse_args()</span><br><span class="line">local_rank = FLAGS.local_rank</span><br><span class="line"></span><br><span class="line"><span class="comment"># DDP：DDP backend初始化</span></span><br><span class="line">torch.cuda.set_device(local_rank)</span><br><span class="line">dist.init_process_group(backend=<span class="string">&#x27;nccl&#x27;</span>)  <span class="comment"># nccl是GPU设备上最快、最推荐的后端</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 准备数据，要在DDP初始化之后进行</span></span><br><span class="line">trainloader = get_dataset()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构造模型</span></span><br><span class="line">model = ToyModel().to(local_rank)</span><br><span class="line"><span class="comment"># DDP: Load模型要在构造DDP模型之前，且只需要在master上加载就行了。</span></span><br><span class="line">ckpt_path = <span class="literal">None</span></span><br><span class="line"><span class="keyword">if</span> dist.get_rank() == <span class="number">0</span> <span class="keyword">and</span> ckpt_path <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">    model.load_state_dict(torch.load(ckpt_path))</span><br><span class="line"><span class="comment"># DDP: 构造DDP model</span></span><br><span class="line">model = DDP(model, device_ids=[local_rank], output_device=local_rank)</span><br><span class="line"></span><br><span class="line"><span class="comment"># DDP: 要在构造DDP model之后，才能用model初始化optimizer。</span></span><br><span class="line">optimizer = torch.optim.SGD(model.parameters(), lr=<span class="number">0.001</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 假设我们的loss是这个</span></span><br><span class="line">loss_func = nn.CrossEntropyLoss().to(local_rank)</span><br><span class="line"></span><br><span class="line"><span class="comment">### 3. 网络训练  ###</span></span><br><span class="line">model.train()</span><br><span class="line">iterator = tqdm(<span class="built_in">range</span>(<span class="number">100</span>))</span><br><span class="line"><span class="keyword">for</span> epoch <span class="keyword">in</span> iterator:</span><br><span class="line">    <span class="comment"># DDP：设置sampler的epoch，</span></span><br><span class="line">    <span class="comment"># DistributedSampler需要这个来指定shuffle方式，</span></span><br><span class="line">    <span class="comment"># 通过维持各个进程之间的相同随机数种子使不同进程能获得同样的shuffle效果。</span></span><br><span class="line">    trainloader.sampler.set_epoch(epoch)</span><br><span class="line">    <span class="comment"># 后面这部分，则与原来完全一致了。</span></span><br><span class="line">    <span class="keyword">for</span> data, label <span class="keyword">in</span> trainloader:</span><br><span class="line">        data, label = data.to(local_rank), label.to(local_rank)</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        prediction = model(data)</span><br><span class="line">        loss = loss_func(prediction, label)</span><br><span class="line">        loss.backward()</span><br><span class="line">        iterator.desc = <span class="string">&quot;loss = %0.3f&quot;</span> % loss</span><br><span class="line">        optimizer.step()</span><br><span class="line">    <span class="comment"># DDP:</span></span><br><span class="line">    <span class="comment"># 1. save模型的时候，和DP模式一样，有一个需要注意的点：保存的是model.module而不是model。</span></span><br><span class="line">    <span class="comment">#    因为model其实是DDP model，参数是被`model=DDP(model)`包起来的。</span></span><br><span class="line">    <span class="comment"># 2. 只需要在进程0上保存一次就行了，避免多次保存重复的东西。</span></span><br><span class="line">    <span class="keyword">if</span> dist.get_rank() == <span class="number">0</span>:</span><br><span class="line">        torch.save(model.module.state_dict(), <span class="string">&quot;%d.ckpt&quot;</span> % epoch)</span><br><span class="line"></span><br><span class="line"><span class="comment">################</span></span><br><span class="line"><span class="comment">## Bash运行</span></span><br><span class="line"><span class="comment"># DDP: 使用torch.distributed.launch启动DDP模式</span></span><br><span class="line"><span class="comment"># 使用CUDA_VISIBLE_DEVICES，来决定使用哪些GPU</span></span><br><span class="line"><span class="comment"># CUDA_VISIBLE_DEVICES=&quot;0,1&quot; python -m torch.distributed.launch --nproc_per_node 2 main.py</span></span><br></pre></td></tr></table></figure>
+
+<p>新增：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"></span><br><span class="line">parser = argparse.ArgumentParser()</span><br><span class="line">parser.add_argument(<span class="string">&quot;--local_rank&quot;</span>, default=-<span class="number">1</span>, <span class="built_in">type</span>=<span class="built_in">int</span>)</span><br><span class="line">FLAGS = parser.parse_args()</span><br><span class="line">local_rank = FLAGS.local_rank</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.utils.data.distributed <span class="keyword">import</span> DistributedSampler</span><br><span class="line"><span class="keyword">import</span> torch.distributed <span class="keyword">as</span> dist</span><br><span class="line"><span class="keyword">from</span> torch.nn.parallel <span class="keyword">import</span> DistributedDataParallel <span class="keyword">as</span> DDP</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">torch.cuda.set_device(local_rank)</span><br><span class="line">dist.init_process_group(backend=<span class="string">&#x27;nccl&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">model.to(local_rank)</span><br><span class="line">model = DDP(model, device_ids=[local_rank], output_device=[local_rank])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">train_dataloader.sampler.set_epoch(epoch)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.module.forword()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CUDA_VISIBLE_DEVICES=<span class="string">&quot;0,1&quot;</span> python -m torch.distributed.launch --nproc_per_node <span class="number">2</span> main.py</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/04/21/SSH%E4%BA%92%E4%BF%A1%E6%9C%BA%E5%88%B6/" rel="prev" title="SSH 互信机制">
+      <i class="fa fa-chevron-left"></i> SSH 互信机制
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/05/14/Java-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="next" title="Java 正则表达式">
+      Java 正则表达式 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#DDP-%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">DDP 原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">基础概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="nav-number">3.</span> <span class="nav-text">命令行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">示例</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">fanchl</p>
+  <div class="site-description" itemprop="description">日拱一卒，功不唐捐。</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fanchl" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fanchl" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:fanchl@bupt.edu.cn" title="E-Mail → mailto:fanchl@bupt.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fanchl</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

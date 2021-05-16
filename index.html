@@ -230,13 +230,81 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Class-Pattern"><a href="#Class-Pattern" class="headerlink" title="Class Pattern"></a>Class Pattern</h1><h2 id="Pattern-类-与-Matcher-类"><a href="#Pattern-类-与-Matcher-类" class="headerlink" title="Pattern 类 与 Matcher 类"></a>Pattern 类 与 Matcher 类</h2><h3 id="一、捕获组的概念"><a href="#一、捕获组的概念" class="headerlink" title="一、捕获组的概念"></a>一、捕获组的概念</h3><p>捕获组可以通过从左到右计算其开括号来编号，<strong>编号从 1 开始</strong>。例如，在表达式 ((A)(B(C))) 中，存在四个组：</p>
+          <h1 id="Pattern-类-与-Matcher-类"><a href="#Pattern-类-与-Matcher-类" class="headerlink" title="Pattern 类 与 Matcher 类"></a>Pattern 类 与 Matcher 类</h1><h2 id="一、捕获组的概念"><a href="#一、捕获组的概念" class="headerlink" title="一、捕获组的概念"></a>一、捕获组的概念</h2><p>捕获组可以通过从左到右计算其开括号来编号，<strong>编号从 1 开始</strong>。例如，在表达式 ((A)(B(C))) 中，存在四个组：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">((A)(B(C)))</span><br><span class="line">(A)</span><br><span class="line">(B(C))</span><br><span class="line">(C)</span><br></pre></td></tr></table></figure>
 
 <p>组 0 代表整个表达式</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/05/14/Java-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2021/05/05/Pytorch-DDP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="fanchl">
+      <meta itemprop="description" content="日拱一卒，功不唐捐。">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="fanchl's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/05/Pytorch-DDP/" class="post-title-link" itemprop="url">Pytorch DDP</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-05 11:06:35" itemprop="dateCreated datePublished" datetime="2021-05-05T11:06:35+08:00">2021-05-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="DDP-原理"><a href="#DDP-原理" class="headerlink" title="DDP 原理"></a>DDP 原理</h2><ul>
+<li>在分类上，DDP 属于 Data Parallel。简单来说，就是通过提高 batch size 来增加并行度。</li>
+<li>通过 Ring-Reduce 的数据交换方法提高了通信效率，并通过启动多个进程的方式减轻 Python GIL 的限制，从而提高训练速度。</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/05/05/Pytorch-DDP/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -853,82 +921,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://fanchl.github.com/2021/01/16/%E7%BB%99%E5%AE%B9%E5%99%A8%E5%AE%89%E8%A3%85SSH%E6%9C%8D%E5%8A%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="fanchl">
-      <meta itemprop="description" content="日拱一卒，功不唐捐。">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="fanchl's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/16/%E7%BB%99%E5%AE%B9%E5%99%A8%E5%AE%89%E8%A3%85SSH%E6%9C%8D%E5%8A%A1/" class="post-title-link" itemprop="url">给容器安装 SSH 服务</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-01-16 00:00:00" itemprop="dateCreated datePublished" datetime="2021-01-16T00:00:00+08:00">2021-01-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">配置</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="给容器安装-SSH-服务"><a href="#给容器安装-SSH-服务" class="headerlink" title="给容器安装 SSH 服务"></a>给容器安装 SSH 服务</h1><h2 id="启动-Container"><a href="#启动-Container" class="headerlink" title="启动 Container"></a>启动 Container</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it [containerID] /bin/bash</span><br></pre></td></tr></table></figure>
-
-<h2 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/16/%E7%BB%99%E5%AE%B9%E5%99%A8%E5%AE%89%E8%A3%85SSH%E6%9C%8D%E5%8A%A1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -998,7 +990,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1011,7 +1003,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
