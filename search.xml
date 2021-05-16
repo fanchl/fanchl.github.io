@@ -316,6 +316,31 @@
       </tags>
   </entry>
   <entry>
+    <title>LaTex 环境配置 (MacTex &amp; VsCode)</title>
+    <url>/2020/10/21/LaTex-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE-MacTex-VsCode/</url>
+    <content><![CDATA[<h2 id="环境配置-MacTex-VS-Code"><a href="#环境配置-MacTex-VS-Code" class="headerlink" title="环境配置 MacTex + VS Code"></a>环境配置 MacTex + VS Code</h2><ol>
+<li><p>下载安装MacTex和VSCode</p>
+<p><img src="https://i.loli.net/2021/05/16/lyGJSORTYKa6zbx.png" alt="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%20MacTex%20+%20VS%20Code%20fb5f49e21c274303880bfca168d097cf/Untitled.png"></p>
+</li>
+</ol>
+<span id="more"></span>
+
+<ol start="2">
+<li><p>在VSCode内安装 LaTeX Workshop 插件</p>
+<p><img src="https://i.loli.net/2021/05/16/Is4HgWi7j1CBDoS.png" alt="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%20MacTex%20+%20VS%20Code%20fb5f49e21c274303880bfca168d097cf/Untitled%201.png"></p>
+</li>
+<li><p>修改VSCode中的 settings.json</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;workbench.colorTheme&quot;</span>: <span class="string">&quot;One Dark Pro&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;terminal.integrated.shell.osx&quot;</span>: <span class="string">&quot;/bin/zsh&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;terminal.integrated.fontFamily&quot;</span>: <span class="string">&quot;Menlo for Powerline&quot;</span>,</span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.autoBuild.run&quot;</span>: <span class="string">&quot;onSave&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.showContextMenu&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.intellisense.package.enabled&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.message.error.show&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.message.warning.show&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.tools&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-synctex=1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-interaction=nonstopmode&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-file-line-error&quot;</span>,</span><br><span class="line">                <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-synctex=1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-interaction=nonstopmode&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-file-line-error&quot;</span>,</span><br><span class="line">                <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;latexmk&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;latexmk&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-synctex=1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-interaction=nonstopmode&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-file-line-error&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-pdf&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-outdir=%OUTDIR%&quot;</span>,</span><br><span class="line">                <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.recipes&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;XeLaTeX&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;PDFLaTeX&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;pdflatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;BibTeX&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;bibtex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;LaTeXmk&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;latexmk&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;xelatex -&gt; bibtex -&gt; xelatex*2&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;pdflatex -&gt; bibtex -&gt; pdflatex*2&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;pdflatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.clean.fileTypes&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;*.aux&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.bbl&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.blg&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.idx&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.ind&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.lof&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.lot&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.out&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.toc&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.acn&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.acr&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.alg&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.glg&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.glo&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.gls&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.ist&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.fls&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.log&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.fdb_latexmk&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.autoClean.run&quot;</span>: <span class="string">&quot;onFailed&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.recipe.default&quot;</span>: <span class="string">&quot;lastUsed&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.view.pdf.internal.synctex.keybinding&quot;</span>: <span class="string">&quot;double-click&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.iconTheme&quot;</span>: <span class="string">&quot;material-icon-theme&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;python.defaultInterpreterPath&quot;</span>: <span class="string">&quot;/Users/fan/anaconda3/envs/ML/bin/python&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.startupEditor&quot;</span>: <span class="string">&quot;none&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;git.confirmSync&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.editorAssociations&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;viewType&quot;</span>: <span class="string">&quot;jupyter.notebook.ipynb&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;filenamePattern&quot;</span>: <span class="string">&quot;*.ipynb&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>配置</category>
+      </categories>
+      <tags>
+        <tag>LaTex</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux 常用指令</title>
     <url>/2020/08/11/Linux-%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="文件夹"><a href="#文件夹" class="headerlink" title="文件夹"></a>文件夹</h1><p>bin：存储的二进制文件 可以被运行<br>dev：主要存放一些外接设备，不能直接被使用，需要被挂载<br>etc：存储一些配置文件<br>home：表示除了root用户之外的其他用户的主目录<br>proc：process，存储linux运行时候的进程<br>mnt：当外接设备需要挂载的时候，挂载到mnt目录<br>root：root用户的目录<br>sbin：super binary，存放一些可以被执行的二进制文件，但是只有超级管理员才能够执行<br>tmp：temporary，临时文件<br>usr：存放用户自己安装的软件<br>var：程序/系统的日志文件</p>
@@ -526,31 +551,6 @@
       </tags>
   </entry>
   <entry>
-    <title>LaTex 环境配置 (MacTex &amp; VsCode)</title>
-    <url>/2020/10/21/LaTex-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE-MacTex-VsCode/</url>
-    <content><![CDATA[<h2 id="环境配置-MacTex-VS-Code"><a href="#环境配置-MacTex-VS-Code" class="headerlink" title="环境配置 MacTex + VS Code"></a>环境配置 MacTex + VS Code</h2><ol>
-<li><p>下载安装MacTex和VSCode</p>
-<p><img src="https://i.loli.net/2021/05/16/lyGJSORTYKa6zbx.png" alt="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%20MacTex%20+%20VS%20Code%20fb5f49e21c274303880bfca168d097cf/Untitled.png"></p>
-</li>
-</ol>
-<span id="more"></span>
-
-<ol start="2">
-<li><p>在VSCode内安装 LaTeX Workshop 插件</p>
-<p><img src="https://i.loli.net/2021/05/16/Is4HgWi7j1CBDoS.png" alt="%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%20MacTex%20+%20VS%20Code%20fb5f49e21c274303880bfca168d097cf/Untitled%201.png"></p>
-</li>
-<li><p>修改VSCode中的 settings.json</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;workbench.colorTheme&quot;</span>: <span class="string">&quot;One Dark Pro&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;terminal.integrated.shell.osx&quot;</span>: <span class="string">&quot;/bin/zsh&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;terminal.integrated.fontFamily&quot;</span>: <span class="string">&quot;Menlo for Powerline&quot;</span>,</span><br><span class="line"></span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.autoBuild.run&quot;</span>: <span class="string">&quot;onSave&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.showContextMenu&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.intellisense.package.enabled&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.message.error.show&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.message.warning.show&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.tools&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-synctex=1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-interaction=nonstopmode&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-file-line-error&quot;</span>,</span><br><span class="line">                <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-synctex=1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-interaction=nonstopmode&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-file-line-error&quot;</span>,</span><br><span class="line">                <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;latexmk&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;latexmk&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;-synctex=1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-interaction=nonstopmode&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-file-line-error&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-pdf&quot;</span>,</span><br><span class="line">                <span class="string">&quot;-outdir=%OUTDIR%&quot;</span>,</span><br><span class="line">                <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.recipes&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;XeLaTeX&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;PDFLaTeX&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;pdflatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;BibTeX&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;bibtex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;LaTeXmk&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;latexmk&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;xelatex -&gt; bibtex -&gt; xelatex*2&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;pdflatex -&gt; bibtex -&gt; pdflatex*2&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">                <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">                <span class="string">&quot;pdflatex&quot;</span></span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.clean.fileTypes&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;*.aux&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.bbl&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.blg&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.idx&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.ind&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.lof&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.lot&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.out&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.toc&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.acn&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.acr&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.alg&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.glg&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.glo&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.gls&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.ist&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.fls&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.log&quot;</span>,</span><br><span class="line">        <span class="string">&quot;*.fdb_latexmk&quot;</span></span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.autoClean.run&quot;</span>: <span class="string">&quot;onFailed&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.latex.recipe.default&quot;</span>: <span class="string">&quot;lastUsed&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;latex-workshop.view.pdf.internal.synctex.keybinding&quot;</span>: <span class="string">&quot;double-click&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.iconTheme&quot;</span>: <span class="string">&quot;material-icon-theme&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;python.defaultInterpreterPath&quot;</span>: <span class="string">&quot;/Users/fan/anaconda3/envs/ML/bin/python&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.startupEditor&quot;</span>: <span class="string">&quot;none&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;git.confirmSync&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">&quot;workbench.editorAssociations&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;viewType&quot;</span>: <span class="string">&quot;jupyter.notebook.ipynb&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;filenamePattern&quot;</span>: <span class="string">&quot;*.ipynb&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>配置</category>
-      </categories>
-      <tags>
-        <tag>LaTex</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Maven 安装配置</title>
     <url>/2021/03/24/Maven%20%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h2 id="一、下载-Maven"><a href="#一、下载-Maven" class="headerlink" title="一、下载 Maven"></a>一、下载 Maven</h2><p>首先从 Maven 官方地址：<a href="http://maven.apache.org/download.cgi">http://maven.apache.org/download.cgi</a> 下载最新版本apache-maven-xxx-bin.tar.gz</p>
@@ -576,79 +576,6 @@
       <tags>
         <tag>Java</tag>
         <tag>macOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>OpenCV</title>
-    <url>/2020/03/24/OpenCV/</url>
-    <content><![CDATA[<h3 id="cv2-imread"><a href="#cv2-imread" class="headerlink" title="cv2.imread()"></a>cv2.imread()</h3><p><code>cv2.imread(filename[, flags]) </code></p>
-<p>第二个参数是要告诉函数应该如何读取这幅图片。</p>
-<p>• <code>cv2.IMREAD_COLOR</code>：读入一副彩色图像。图像的透明度会被忽略，这是默认参数。</p>
-<p>• <code>cv2.IMREAD_GRAYSCALE</code>：以灰度模式读入图像</p>
-<p>返回（高度，宽度，通道数）的np数组，可通过.shape查看</p>
-<span id="more"></span>
-
-
-
-<h3 id="cv2-resize"><a href="#cv2-resize" class="headerlink" title="cv2.resize()"></a>cv2.resize()</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cv2.resize(src, dsize[, dst[, fx[, fy[, interpolation]]]])</span><br></pre></td></tr></table></figure>
-
-<p>参数：</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>src</td>
-<td>【必需】原图像</td>
-</tr>
-<tr>
-<td>dsize</td>
-<td>【必需】输出图像所需大小</td>
-</tr>
-<tr>
-<td>fx</td>
-<td>【可选】沿水平轴的比例因子</td>
-</tr>
-<tr>
-<td>fy</td>
-<td>【可选】沿垂直轴的比例因子</td>
-</tr>
-<tr>
-<td>interpolation</td>
-<td>【可选】插值方式</td>
-</tr>
-</tbody></table>
-<p>其中插值方式有很多种：</p>
-<table>
-<thead>
-<tr>
-<th>cv.INTER_NEAREST</th>
-<th>最近邻插值</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>cv.INTER_LINEAR</td>
-<td>双线性插值</td>
-</tr>
-<tr>
-<td>cv.INTER_CUBIC</td>
-<td>双线性插值</td>
-</tr>
-<tr>
-<td>cv.INTER_AREA</td>
-<td>使用像素区域关系重新采样。它可能是图像抽取的首选方法，因为它可以提供无莫尔条纹的结果。但是当图像被缩放时，它类似于INTER_NEAREST方法。</td>
-</tr>
-</tbody></table>
-<p>通常的，缩小使用cv.INTER_AREA，放缩使用cv.INTER_CUBIC(较慢)和cv.INTER_LINEAR(较快效果也不错)。<br>默认情况下，所有的放缩都使用cv.INTER_LINEAR。</p>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>机器学习</tag>
       </tags>
   </entry>
   <entry>
@@ -771,6 +698,79 @@
       </tags>
   </entry>
   <entry>
+    <title>OpenCV</title>
+    <url>/2020/03/24/OpenCV/</url>
+    <content><![CDATA[<h3 id="cv2-imread"><a href="#cv2-imread" class="headerlink" title="cv2.imread()"></a>cv2.imread()</h3><p><code>cv2.imread(filename[, flags]) </code></p>
+<p>第二个参数是要告诉函数应该如何读取这幅图片。</p>
+<p>• <code>cv2.IMREAD_COLOR</code>：读入一副彩色图像。图像的透明度会被忽略，这是默认参数。</p>
+<p>• <code>cv2.IMREAD_GRAYSCALE</code>：以灰度模式读入图像</p>
+<p>返回（高度，宽度，通道数）的np数组，可通过.shape查看</p>
+<span id="more"></span>
+
+
+
+<h3 id="cv2-resize"><a href="#cv2-resize" class="headerlink" title="cv2.resize()"></a>cv2.resize()</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">cv2.resize(src, dsize[, dst[, fx[, fy[, interpolation]]]])</span><br></pre></td></tr></table></figure>
+
+<p>参数：</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>src</td>
+<td>【必需】原图像</td>
+</tr>
+<tr>
+<td>dsize</td>
+<td>【必需】输出图像所需大小</td>
+</tr>
+<tr>
+<td>fx</td>
+<td>【可选】沿水平轴的比例因子</td>
+</tr>
+<tr>
+<td>fy</td>
+<td>【可选】沿垂直轴的比例因子</td>
+</tr>
+<tr>
+<td>interpolation</td>
+<td>【可选】插值方式</td>
+</tr>
+</tbody></table>
+<p>其中插值方式有很多种：</p>
+<table>
+<thead>
+<tr>
+<th>cv.INTER_NEAREST</th>
+<th>最近邻插值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>cv.INTER_LINEAR</td>
+<td>双线性插值</td>
+</tr>
+<tr>
+<td>cv.INTER_CUBIC</td>
+<td>双线性插值</td>
+</tr>
+<tr>
+<td>cv.INTER_AREA</td>
+<td>使用像素区域关系重新采样。它可能是图像抽取的首选方法，因为它可以提供无莫尔条纹的结果。但是当图像被缩放时，它类似于INTER_NEAREST方法。</td>
+</tr>
+</tbody></table>
+<p>通常的，缩小使用cv.INTER_AREA，放缩使用cv.INTER_CUBIC(较慢)和cv.INTER_LINEAR(较快效果也不错)。<br>默认情况下，所有的放缩都使用cv.INTER_LINEAR。</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Pytorch DDP</title>
     <url>/2021/05/05/Pytorch-DDP/</url>
     <content><![CDATA[<h2 id="DDP-原理"><a href="#DDP-原理" class="headerlink" title="DDP 原理"></a>DDP 原理</h2><ul>
@@ -816,6 +816,70 @@
 ]]></content>
       <tags>
         <tag>深度学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>SSH 互信机制</title>
+    <url>/2021/04/21/SSH%E4%BA%92%E4%BF%A1%E6%9C%BA%E5%88%B6/</url>
+    <content><![CDATA[<h2 id="SSH-互信机制"><a href="#SSH-互信机制" class="headerlink" title="SSH 互信机制"></a>SSH 互信机制</h2><ol>
+<li><p>客户端</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span></span><br><span class="line">$ ssh-keygen -t rsa</span><br><span class="line">$ <span class="built_in">cd</span> .ssh/</span><br><span class="line">$ ls</span><br><span class="line"><span class="comment">## id_rsa  id_rsa.pub</span></span><br></pre></td></tr></table></figure></li>
+<li><p>服务器</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> .ssh/</span><br><span class="line">$ vim authorized_keys</span><br><span class="line"><span class="comment">## 粘贴客户端的id_rsa.pub内容</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<span id="more"></span>
+
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="1、中间人攻击"><a href="#1、中间人攻击" class="headerlink" title="1、中间人攻击"></a>1、中间人攻击</h3><p>SSH之所以能够保证安全，原因在于它采用了公钥加密。</p>
+<p>过程：</p>
+<ol>
+<li>远程主机收到用户的登录请求，把自己的公钥发给用户。</li>
+<li>用户使用这个公钥，将登录密码加密后，发送回来。</li>
+<li>远程主机用自己的私钥，解密登录密码，如果密码正确，就同意用户登录。</li>
+</ol>
+<p>这个过程本身是安全的，但是实施的时候存在一个风险：如果有人截获了登录请求，然后冒充远程主机，将伪造的公钥发给用户，那么用户很难辨别真伪。因为不像https协议，SSH协议的公钥是没有证书中心（CA）公证的，也就是说，都是自己签发的。</p>
+<h3 id="2、口令登陆"><a href="#2、口令登陆" class="headerlink" title="2、口令登陆"></a>2、口令登陆</h3><p>如果第一次登陆服务器，系统会出现如下提示：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">The authenticity of host <span class="string">&#x27;host (12.18.429.21)&#x27;</span> can<span class="string">&#x27;t be established.</span></span><br><span class="line"><span class="string">RSA key fingerprint is 98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)?</span></span><br><span class="line"><span class="string">## 无法确认host主机的真实性，只知道它的公钥指纹，还想继续连接吗？</span></span><br></pre></td></tr></table></figure>
+
+<p>所谓”公钥指纹”，是指公钥长度较长（这里采用RSA算法，长达1024位），很难比对，所以对其进行MD5计算，将它变成一个128位的指纹。上例中是98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d，再进行比较，就容易多了。</p>
+<p>很自然的一个问题就是，用户怎么知道远程主机的公钥指纹应该是多少？回答是没有好办法，远程主机必须在自己的网站上贴出公钥指纹，以便用户自行核对。</p>
+<p>假定经过风险衡量以后，用户决定接受这个远程主机的公钥。系统会出现一句提示，表示host主机已经得到认可。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Warning: Permanently added <span class="string">&#x27;host,12.18.429.21&#x27;</span> (RSA) to the list of known hosts.</span><br></pre></td></tr></table></figure>
+
+<p>然后，会要求输入密码。如果密码正确，就可以登录了。</p>
+<p>当远程主机的公钥被接受以后，它就会被保存在文件 <code>$HOME/.ssh/known_hosts</code> 之中。下次再连接这台主机，系统就会认出它的公钥已经保存在本地了，从而跳过警告部分，直接提示输入密码。</p>
+<p>每个SSH用户都有自己的known_hosts文件，此外系统也有一个这样的文件，通常是 <code>/etc/ssh/ssh_known_hosts</code>，保存一些对所有用户都可信赖的远程主机的公钥。</p>
+<h3 id="3、公钥登陆"><a href="#3、公钥登陆" class="headerlink" title="3、公钥登陆"></a>3、公钥登陆</h3><p>SSH还提供了公钥登录，可以省去输入密码的步骤。</p>
+<p>所谓”公钥登录”，就是用户将自己的公钥储存在远程主机上。登录的时候，远程主机会向用户发送一段随机字符串，用户用自己的私钥加密后，再发回来。远程主机用事先储存的公钥进行解密，如果成功，就证明用户是可信的，直接允许登录shell，不再要求密码。</p>
+<p>这种方法要求用户必须提供自己的公钥。如果没有现成的，可以直接用ssh-keygen生成一个：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen</span><br></pre></td></tr></table></figure>
+
+<p>运行上面的命令以后，系统会出现一系列提示，可以一路回车。其中有一个问题是，要不要对私钥设置口令（passphrase），如果担心私钥的安全，这里可以设置一个。</p>
+<p>运行结束以后，在 <code>$HOME/.ssh/</code> 目录下，会新生成两个文件： <code>id_rsa.pub</code>和 <code>id_rsa</code>。</p>
+<p>前者是公钥，后者是私钥。</p>
+<p>这时再输入下面的命令，将公钥传送到远程主机host上面：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-copy-id user@host</span><br></pre></td></tr></table></figure>
+
+<p>从此再登录，就不需要输入密码了。</p>
+<p>如果还是不行，就打开远程主机的/etc/ssh/sshd_config这个文件，检查下面几行前面”#”注释是否取掉。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">RSAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">AuthorizedKeysFile .ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<p>然后，重启远程主机的ssh服务。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// ubuntu系统</span><br><span class="line">service ssh restart</span><br><span class="line">　　</span><br><span class="line">// debian系统</span><br><span class="line">/etc/init.d/ssh restart</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、authorized-keys文件"><a href="#4、authorized-keys文件" class="headerlink" title="4、authorized_keys文件"></a>4、authorized_keys文件</h3><p>远程主机将用户的公钥，保存在登录后的用户主目录的 <code>$HOME/.ssh/authorized_keys</code>文件中。公钥就是一段字符串，只要把它追加在 <code>authorized_keys</code>文件的末尾就行了。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh user@host <span class="string">&#x27;mkdir -p .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys&#x27;</span> &lt; ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<p>这条命令由多个语句组成，依次分解开来看：</p>
+<p>（1） <code>$ ssh user@host</code>，表示登录远程主机；</p>
+<p>（2）单引号中的 <code>mkdir .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys</code>，表示登录后在远程shell上执行的命令；</p>
+<p>（3） <code>$ mkdir -p .ssh</code> 的作用是，如果用户主目录中的.ssh目录不存在，就创建一个；</p>
+<p>（4） <code>cat &gt;&gt; .ssh/authorized_keys&#39; &lt; ~/.ssh/id_rsa.pub</code>的作用是，将本地的公钥文件 <code>~/.ssh/id_rsa.pub</code>，重定向追加到远程文件 <code>authorized_keys</code>的末尾。</p>
+<p>写入 <code>authorized_keys</code>文件后，公钥登录的设置就完成了。</p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+        <tag>远程连接</tag>
+        <tag>SSH</tag>
       </tags>
   </entry>
   <entry>
@@ -1147,70 +1211,6 @@
       </tags>
   </entry>
   <entry>
-    <title>SSH 互信机制</title>
-    <url>/2021/04/21/SSH%E4%BA%92%E4%BF%A1%E6%9C%BA%E5%88%B6/</url>
-    <content><![CDATA[<h2 id="SSH-互信机制"><a href="#SSH-互信机制" class="headerlink" title="SSH 互信机制"></a>SSH 互信机制</h2><ol>
-<li><p>客户端</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span></span><br><span class="line">$ ssh-keygen -t rsa</span><br><span class="line">$ <span class="built_in">cd</span> .ssh/</span><br><span class="line">$ ls</span><br><span class="line"><span class="comment">## id_rsa  id_rsa.pub</span></span><br></pre></td></tr></table></figure></li>
-<li><p>服务器</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> .ssh/</span><br><span class="line">$ vim authorized_keys</span><br><span class="line"><span class="comment">## 粘贴客户端的id_rsa.pub内容</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<span id="more"></span>
-
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h3 id="1、中间人攻击"><a href="#1、中间人攻击" class="headerlink" title="1、中间人攻击"></a>1、中间人攻击</h3><p>SSH之所以能够保证安全，原因在于它采用了公钥加密。</p>
-<p>过程：</p>
-<ol>
-<li>远程主机收到用户的登录请求，把自己的公钥发给用户。</li>
-<li>用户使用这个公钥，将登录密码加密后，发送回来。</li>
-<li>远程主机用自己的私钥，解密登录密码，如果密码正确，就同意用户登录。</li>
-</ol>
-<p>这个过程本身是安全的，但是实施的时候存在一个风险：如果有人截获了登录请求，然后冒充远程主机，将伪造的公钥发给用户，那么用户很难辨别真伪。因为不像https协议，SSH协议的公钥是没有证书中心（CA）公证的，也就是说，都是自己签发的。</p>
-<h3 id="2、口令登陆"><a href="#2、口令登陆" class="headerlink" title="2、口令登陆"></a>2、口令登陆</h3><p>如果第一次登陆服务器，系统会出现如下提示：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">The authenticity of host <span class="string">&#x27;host (12.18.429.21)&#x27;</span> can<span class="string">&#x27;t be established.</span></span><br><span class="line"><span class="string">RSA key fingerprint is 98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d.</span></span><br><span class="line"><span class="string">Are you sure you want to continue connecting (yes/no)?</span></span><br><span class="line"><span class="string">## 无法确认host主机的真实性，只知道它的公钥指纹，还想继续连接吗？</span></span><br></pre></td></tr></table></figure>
-
-<p>所谓”公钥指纹”，是指公钥长度较长（这里采用RSA算法，长达1024位），很难比对，所以对其进行MD5计算，将它变成一个128位的指纹。上例中是98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d，再进行比较，就容易多了。</p>
-<p>很自然的一个问题就是，用户怎么知道远程主机的公钥指纹应该是多少？回答是没有好办法，远程主机必须在自己的网站上贴出公钥指纹，以便用户自行核对。</p>
-<p>假定经过风险衡量以后，用户决定接受这个远程主机的公钥。系统会出现一句提示，表示host主机已经得到认可。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">Warning: Permanently added <span class="string">&#x27;host,12.18.429.21&#x27;</span> (RSA) to the list of known hosts.</span><br></pre></td></tr></table></figure>
-
-<p>然后，会要求输入密码。如果密码正确，就可以登录了。</p>
-<p>当远程主机的公钥被接受以后，它就会被保存在文件 <code>$HOME/.ssh/known_hosts</code> 之中。下次再连接这台主机，系统就会认出它的公钥已经保存在本地了，从而跳过警告部分，直接提示输入密码。</p>
-<p>每个SSH用户都有自己的known_hosts文件，此外系统也有一个这样的文件，通常是 <code>/etc/ssh/ssh_known_hosts</code>，保存一些对所有用户都可信赖的远程主机的公钥。</p>
-<h3 id="3、公钥登陆"><a href="#3、公钥登陆" class="headerlink" title="3、公钥登陆"></a>3、公钥登陆</h3><p>SSH还提供了公钥登录，可以省去输入密码的步骤。</p>
-<p>所谓”公钥登录”，就是用户将自己的公钥储存在远程主机上。登录的时候，远程主机会向用户发送一段随机字符串，用户用自己的私钥加密后，再发回来。远程主机用事先储存的公钥进行解密，如果成功，就证明用户是可信的，直接允许登录shell，不再要求密码。</p>
-<p>这种方法要求用户必须提供自己的公钥。如果没有现成的，可以直接用ssh-keygen生成一个：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-keygen</span><br></pre></td></tr></table></figure>
-
-<p>运行上面的命令以后，系统会出现一系列提示，可以一路回车。其中有一个问题是，要不要对私钥设置口令（passphrase），如果担心私钥的安全，这里可以设置一个。</p>
-<p>运行结束以后，在 <code>$HOME/.ssh/</code> 目录下，会新生成两个文件： <code>id_rsa.pub</code>和 <code>id_rsa</code>。</p>
-<p>前者是公钥，后者是私钥。</p>
-<p>这时再输入下面的命令，将公钥传送到远程主机host上面：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh-copy-id user@host</span><br></pre></td></tr></table></figure>
-
-<p>从此再登录，就不需要输入密码了。</p>
-<p>如果还是不行，就打开远程主机的/etc/ssh/sshd_config这个文件，检查下面几行前面”#”注释是否取掉。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">RSAAuthentication yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">AuthorizedKeysFile .ssh/authorized_keys</span><br></pre></td></tr></table></figure>
-
-<p>然后，重启远程主机的ssh服务。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">// ubuntu系统</span><br><span class="line">service ssh restart</span><br><span class="line">　　</span><br><span class="line">// debian系统</span><br><span class="line">/etc/init.d/ssh restart</span><br></pre></td></tr></table></figure>
-
-<h3 id="4、authorized-keys文件"><a href="#4、authorized-keys文件" class="headerlink" title="4、authorized_keys文件"></a>4、authorized_keys文件</h3><p>远程主机将用户的公钥，保存在登录后的用户主目录的 <code>$HOME/.ssh/authorized_keys</code>文件中。公钥就是一段字符串，只要把它追加在 <code>authorized_keys</code>文件的末尾就行了。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ ssh user@host <span class="string">&#x27;mkdir -p .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys&#x27;</span> &lt; ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
-
-<p>这条命令由多个语句组成，依次分解开来看：</p>
-<p>（1） <code>$ ssh user@host</code>，表示登录远程主机；</p>
-<p>（2）单引号中的 <code>mkdir .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys</code>，表示登录后在远程shell上执行的命令；</p>
-<p>（3） <code>$ mkdir -p .ssh</code> 的作用是，如果用户主目录中的.ssh目录不存在，就创建一个；</p>
-<p>（4） <code>cat &gt;&gt; .ssh/authorized_keys&#39; &lt; ~/.ssh/id_rsa.pub</code>的作用是，将本地的公钥文件 <code>~/.ssh/id_rsa.pub</code>，重定向追加到远程文件 <code>authorized_keys</code>的末尾。</p>
-<p>写入 <code>authorized_keys</code>文件后，公钥登录的设置就完成了。</p>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-        <tag>远程连接</tag>
-        <tag>SSH</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Vim 配置</title>
     <url>/2021/01/18/Vim%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<h1 id="Vim-配置"><a href="#Vim-配置" class="headerlink" title="Vim 配置"></a>Vim 配置</h1><p>Vim编辑器相关的所有功能开关都可以通过 <strong><code>.vimrc</code></strong> 文件进行设置。 </p>
@@ -1278,6 +1278,72 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>oh-my-zsh 配置</title>
+    <url>/2020/08/11/oh-my-zsh-%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h1 id="oh-my-zsh-配置"><a href="#oh-my-zsh-配置" class="headerlink" title="oh-my-zsh 配置"></a>oh-my-zsh 配置</h1><h2 id="一、clone-项目"><a href="#一、clone-项目" class="headerlink" title="一、clone 项目"></a>一、clone 项目</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com.cnpmjs.org/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、复制-zshrc"><a href="#二、复制-zshrc" class="headerlink" title="二、复制 .zshrc"></a>二、复制 .zshrc</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h2 id="三、更改默认-Shell"><a href="#三、更改默认-Shell" class="headerlink" title="三、更改默认 Shell"></a>三、更改默认 Shell</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure>
+
+<p>查看当前shell</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$SHELL</span></span><br><span class="line"><span class="comment"># &quot;如果切换之后还是bash，重启终端&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>激活配置文件 <code>.zshrc</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> .zshrc</span><br></pre></td></tr></table></figure>
+
+<p>得到结果如下：</p>
+<p><img src="https://i.loli.net/2021/05/16/XPYRoOyv6Bh81eM.png" alt="oh-my-zsh%20%E9%85%8D%E7%BD%AE%20ecf592a1f6604e968d0fc07981e66d1c/Untitled.png"></p>
+<h2 id="四、配置主题"><a href="#四、配置主题" class="headerlink" title="四、配置主题"></a>四、配置主题</h2><p>在 <code>.zshrc</code>配置文件中修改</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ZSH_THEME=<span class="string">&quot;agnoster&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>激活配置文件<code>.zshrc</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> .zshrc</span><br></pre></td></tr></table></figure>
+
+<p>得到结果如下：</p>
+<p><img src="https://i.loli.net/2021/05/16/iuhd8XHFnJfPjDG.png" alt="oh-my-zsh%20%E9%85%8D%E7%BD%AE%20ecf592a1f6604e968d0fc07981e66d1c/Untitled%201.png"></p>
+<h2 id="五、配置插件"><a href="#五、配置插件" class="headerlink" title="五、配置插件"></a>五、配置插件</h2><h3 id="（1）zsh-syntax-highlighting-命令语法高亮"><a href="#（1）zsh-syntax-highlighting-命令语法高亮" class="headerlink" title="（1）zsh-syntax-highlighting(命令语法高亮)"></a>（1）zsh-syntax-highlighting(命令语法高亮)</h3><ol>
+<li><p>Clone项目到$ZSH_CUSTOM/plugins文件夹下 (默认为 ~/.oh-my-zsh/custom/plugins)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com.cnpmjs.org/zsh-users/zsh-syntax-highlighting.git <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting</span><br></pre></td></tr></table></figure></li>
+<li><p>在 Oh My Zsh 的配置文件 (~/.zshrc)中设置:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">plugins=(其他插件 zsh-syntax-highlighting)</span><br></pre></td></tr></table></figure></li>
+<li><p>运行 <code>source ~/.zshrc</code> 更新配置</p>
+</li>
+</ol>
+<h3 id="（2）zsh-autosuggestions-命令自动补全"><a href="#（2）zsh-autosuggestions-命令自动补全" class="headerlink" title="（2）zsh-autosuggestions(命令自动补全)"></a>（2）zsh-autosuggestions(命令自动补全)</h3><ol>
+<li><p>Clone项目到$ZSH_CUSTOM/plugins文件夹下 (默认为 ~/.oh-my-zsh/custom/plugins)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com.cnpmjs.org/zsh-users/zsh-autosuggestions <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure></li>
+<li><p>在 Oh My Zsh 的配置文件 (~/.zshrc)中设置:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">plugins=(其他插件 zsh-autosuggestions)</span><br></pre></td></tr></table></figure></li>
+<li><p>运行 <code>source ~/.zshrc</code> 更新配置</p>
+<blockquote>
+<p>当重新打开终端的时候可能看不到变化，可能你的字体颜色太淡了，我们把其改亮一些：</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions</span><br><span class="line">vim zsh-autosuggestions.zsh</span><br><span class="line">vim ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh</span><br><span class="line"><span class="comment"># 修改 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=&#x27;fg=10&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>修改成功后需要运行 source ~/.zshrc 更新配置</p>
+</blockquote>
+</li>
+<li><p>自定义快捷键</p>
+<p>如果感觉 → 补全不方便，还可以自定义补全的快捷键，比如我设置的逗号补全，只需要在 <code>.zshrc</code> 文件下方添加这句话</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;,&#x27;</span> autosuggest-accept</span><br></pre></td></tr></table></figure>
+
+<p>运行 <code>source ~/.zshrc</code> 更新配置</p>
+</li>
+</ol>
+<h2 id="六、-zshrc-样例"><a href="#六、-zshrc-样例" class="headerlink" title="六、.zshrc 样例"></a>六、.zshrc 样例</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># If you come from bash you might have to change your $PATH.</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:~/anaconda3/bin</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles</span><br><span class="line"><span class="built_in">export</span> http_proxy=<span class="string">&quot;http://127.0.0.1:7890&quot;</span></span><br><span class="line"><span class="built_in">export</span> https_proxy=<span class="string">&quot;http://127.0.0.1:7890&quot;</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home</span><br><span class="line"></span><br><span class="line"><span class="comment"># Path to your oh-my-zsh installation.</span></span><br><span class="line"><span class="built_in">export</span> ZSH=<span class="string">&quot;/Users/fan/.oh-my-zsh&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set name of the theme to load --- if set to &quot;random&quot;, it will</span></span><br><span class="line"><span class="comment"># load a random theme each time oh-my-zsh is loaded, in which case,</span></span><br><span class="line"><span class="comment"># to know which specific one was loaded, run: echo $RANDOM_THEME</span></span><br><span class="line"><span class="comment"># See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes</span></span><br><span class="line">ZSH_THEME=<span class="string">&quot;agnoster&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set list of themes to pick from when loading at random</span></span><br><span class="line"><span class="comment"># Setting this variable when ZSH_THEME=random will cause zsh to load</span></span><br><span class="line"><span class="comment"># a theme from this variable instead of looking in $ZSH/themes/</span></span><br><span class="line"><span class="comment"># If set to an empty array, this variable will have no effect.</span></span><br><span class="line"><span class="comment"># ZSH_THEME_RANDOM_CANDIDATES=( &quot;robbyrussell&quot; &quot;agnoster&quot; )</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to use case-sensitive completion.</span></span><br><span class="line"><span class="comment"># CASE_SENSITIVE=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to use hyphen-insensitive completion.</span></span><br><span class="line"><span class="comment"># Case-sensitive completion must be off. _ and - will be interchangeable.</span></span><br><span class="line"><span class="comment"># HYPHEN_INSENSITIVE=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to disable bi-weekly auto-update checks.</span></span><br><span class="line"><span class="comment"># DISABLE_AUTO_UPDATE=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to automatically update without prompting.</span></span><br><span class="line"><span class="comment"># DISABLE_UPDATE_PROMPT=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to change how often to auto-update (in days).</span></span><br><span class="line"><span class="comment"># export UPDATE_ZSH_DAYS=13</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line if pasting URLs and other text is messed up.</span></span><br><span class="line"><span class="comment"># DISABLE_MAGIC_FUNCTIONS=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to disable colors in ls.</span></span><br><span class="line"><span class="comment"># DISABLE_LS_COLORS=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to disable auto-setting terminal title.</span></span><br><span class="line"><span class="comment"># DISABLE_AUTO_TITLE=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to enable command auto-correction.</span></span><br><span class="line"><span class="comment"># ENABLE_CORRECTION=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to display red dots whilst waiting for completion.</span></span><br><span class="line"><span class="comment"># COMPLETION_WAITING_DOTS=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line if you want to disable marking untracked files</span></span><br><span class="line"><span class="comment"># under VCS as dirty. This makes repository status check for large repositories</span></span><br><span class="line"><span class="comment"># much, much faster.</span></span><br><span class="line"><span class="comment"># DISABLE_UNTRACKED_FILES_DIRTY=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line if you want to change the command execution time</span></span><br><span class="line"><span class="comment"># stamp shown in the history command output.</span></span><br><span class="line"><span class="comment"># You can set one of the optional three formats:</span></span><br><span class="line"><span class="comment"># &quot;mm/dd/yyyy&quot;|&quot;dd.mm.yyyy&quot;|&quot;yyyy-mm-dd&quot;</span></span><br><span class="line"><span class="comment"># or set a custom format using the strftime function format specifications,</span></span><br><span class="line"><span class="comment"># see &#x27;man strftime&#x27; for details.</span></span><br><span class="line"><span class="comment"># HIST_STAMPS=&quot;mm/dd/yyyy&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Would you like to use another custom folder than $ZSH/custom?</span></span><br><span class="line"><span class="comment"># ZSH_CUSTOM=/path/to/new-custom-folder</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Which plugins would you like to load?</span></span><br><span class="line"><span class="comment"># Standard plugins can be found in $ZSH/plugins/</span></span><br><span class="line"><span class="comment"># Custom plugins may be added to $ZSH_CUSTOM/plugins/</span></span><br><span class="line"><span class="comment"># Example format: plugins=(rails git textmate ruby lighthouse)</span></span><br><span class="line"><span class="comment"># Add wisely, as too many plugins slow down shell startup.</span></span><br><span class="line">plugins=(git zsh-syntax-highlighting zsh-autosuggestions)</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> <span class="variable">$ZSH</span>/oh-my-zsh.sh</span><br><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;,&#x27;</span> autosuggest-accept</span><br><span class="line"></span><br><span class="line"><span class="comment"># User configuration</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># export MANPATH=&quot;/usr/local/man:$MANPATH&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># You may need to manually set your language environment</span></span><br><span class="line"><span class="comment"># export LANG=en_US.UTF-8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Preferred editor for local and remote sessions</span></span><br><span class="line"><span class="comment"># if [[ -n $SSH_CONNECTION ]]; then</span></span><br><span class="line"><span class="comment">#   export EDITOR=&#x27;vim&#x27;</span></span><br><span class="line"><span class="comment"># else</span></span><br><span class="line"><span class="comment">#   export EDITOR=&#x27;mvim&#x27;</span></span><br><span class="line"><span class="comment"># fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Compilation flags</span></span><br><span class="line"><span class="comment"># export ARCHFLAGS=&quot;-arch x86_64&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set personal aliases, overriding those provided by oh-my-zsh libs,</span></span><br><span class="line"><span class="comment"># plugins, and themes. Aliases can be placed here, though oh-my-zsh</span></span><br><span class="line"><span class="comment"># users are encouraged to define aliases within the ZSH_CUSTOM folder.</span></span><br><span class="line"><span class="comment"># For a full list of active aliases, run `alias`.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Example aliases</span></span><br><span class="line"><span class="comment"># alias zshconfig=&quot;mate ~/.zshrc&quot;</span></span><br><span class="line"><span class="comment"># alias ohmyzsh=&quot;mate ~/.oh-my-zsh&quot;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>配置</category>
+      </categories>
+      <tags>
+        <tag>macOS</tag>
+        <tag>终端</tag>
+      </tags>
   </entry>
   <entry>
     <title>服务器常用指令</title>
@@ -1354,72 +1420,6 @@
         <tag>远程连接</tag>
         <tag>SSH</tag>
         <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>oh-my-zsh 配置</title>
-    <url>/2020/08/11/oh-my-zsh-%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h1 id="oh-my-zsh-配置"><a href="#oh-my-zsh-配置" class="headerlink" title="oh-my-zsh 配置"></a>oh-my-zsh 配置</h1><h2 id="一、clone-项目"><a href="#一、clone-项目" class="headerlink" title="一、clone 项目"></a>一、clone 项目</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com.cnpmjs.org/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</span><br></pre></td></tr></table></figure>
-
-<h2 id="二、复制-zshrc"><a href="#二、复制-zshrc" class="headerlink" title="二、复制 .zshrc"></a>二、复制 .zshrc</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<span id="more"></span>
-
-<h2 id="三、更改默认-Shell"><a href="#三、更改默认-Shell" class="headerlink" title="三、更改默认 Shell"></a>三、更改默认 Shell</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure>
-
-<p>查看当前shell</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$SHELL</span></span><br><span class="line"><span class="comment"># &quot;如果切换之后还是bash，重启终端&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>激活配置文件 <code>.zshrc</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> .zshrc</span><br></pre></td></tr></table></figure>
-
-<p>得到结果如下：</p>
-<p><img src="https://i.loli.net/2021/05/16/XPYRoOyv6Bh81eM.png" alt="oh-my-zsh%20%E9%85%8D%E7%BD%AE%20ecf592a1f6604e968d0fc07981e66d1c/Untitled.png"></p>
-<h2 id="四、配置主题"><a href="#四、配置主题" class="headerlink" title="四、配置主题"></a>四、配置主题</h2><p>在 <code>.zshrc</code>配置文件中修改</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ZSH_THEME=<span class="string">&quot;agnoster&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>激活配置文件<code>.zshrc</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">source</span> .zshrc</span><br></pre></td></tr></table></figure>
-
-<p>得到结果如下：</p>
-<p><img src="https://i.loli.net/2021/05/16/iuhd8XHFnJfPjDG.png" alt="oh-my-zsh%20%E9%85%8D%E7%BD%AE%20ecf592a1f6604e968d0fc07981e66d1c/Untitled%201.png"></p>
-<h2 id="五、配置插件"><a href="#五、配置插件" class="headerlink" title="五、配置插件"></a>五、配置插件</h2><h3 id="（1）zsh-syntax-highlighting-命令语法高亮"><a href="#（1）zsh-syntax-highlighting-命令语法高亮" class="headerlink" title="（1）zsh-syntax-highlighting(命令语法高亮)"></a>（1）zsh-syntax-highlighting(命令语法高亮)</h3><ol>
-<li><p>Clone项目到$ZSH_CUSTOM/plugins文件夹下 (默认为 ~/.oh-my-zsh/custom/plugins)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com.cnpmjs.org/zsh-users/zsh-syntax-highlighting.git <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting</span><br></pre></td></tr></table></figure></li>
-<li><p>在 Oh My Zsh 的配置文件 (~/.zshrc)中设置:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">plugins=(其他插件 zsh-syntax-highlighting)</span><br></pre></td></tr></table></figure></li>
-<li><p>运行 <code>source ~/.zshrc</code> 更新配置</p>
-</li>
-</ol>
-<h3 id="（2）zsh-autosuggestions-命令自动补全"><a href="#（2）zsh-autosuggestions-命令自动补全" class="headerlink" title="（2）zsh-autosuggestions(命令自动补全)"></a>（2）zsh-autosuggestions(命令自动补全)</h3><ol>
-<li><p>Clone项目到$ZSH_CUSTOM/plugins文件夹下 (默认为 ~/.oh-my-zsh/custom/plugins)</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com.cnpmjs.org/zsh-users/zsh-autosuggestions <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-autosuggestions</span><br></pre></td></tr></table></figure></li>
-<li><p>在 Oh My Zsh 的配置文件 (~/.zshrc)中设置:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">plugins=(其他插件 zsh-autosuggestions)</span><br></pre></td></tr></table></figure></li>
-<li><p>运行 <code>source ~/.zshrc</code> 更新配置</p>
-<blockquote>
-<p>当重新打开终端的时候可能看不到变化，可能你的字体颜色太淡了，我们把其改亮一些：</p>
-</blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions</span><br><span class="line">vim zsh-autosuggestions.zsh</span><br><span class="line">vim ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh</span><br><span class="line"><span class="comment"># 修改 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=&#x27;fg=10&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>修改成功后需要运行 source ~/.zshrc 更新配置</p>
-</blockquote>
-</li>
-<li><p>自定义快捷键</p>
-<p>如果感觉 → 补全不方便，还可以自定义补全的快捷键，比如我设置的逗号补全，只需要在 <code>.zshrc</code> 文件下方添加这句话</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;,&#x27;</span> autosuggest-accept</span><br></pre></td></tr></table></figure>
-
-<p>运行 <code>source ~/.zshrc</code> 更新配置</p>
-</li>
-</ol>
-<h2 id="六、-zshrc-样例"><a href="#六、-zshrc-样例" class="headerlink" title="六、.zshrc 样例"></a>六、.zshrc 样例</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># If you come from bash you might have to change your $PATH.</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:~/anaconda3/bin</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles</span><br><span class="line"><span class="built_in">export</span> http_proxy=<span class="string">&quot;http://127.0.0.1:7890&quot;</span></span><br><span class="line"><span class="built_in">export</span> https_proxy=<span class="string">&quot;http://127.0.0.1:7890&quot;</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_281.jdk/Contents/Home</span><br><span class="line"></span><br><span class="line"><span class="comment"># Path to your oh-my-zsh installation.</span></span><br><span class="line"><span class="built_in">export</span> ZSH=<span class="string">&quot;/Users/fan/.oh-my-zsh&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set name of the theme to load --- if set to &quot;random&quot;, it will</span></span><br><span class="line"><span class="comment"># load a random theme each time oh-my-zsh is loaded, in which case,</span></span><br><span class="line"><span class="comment"># to know which specific one was loaded, run: echo $RANDOM_THEME</span></span><br><span class="line"><span class="comment"># See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes</span></span><br><span class="line">ZSH_THEME=<span class="string">&quot;agnoster&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set list of themes to pick from when loading at random</span></span><br><span class="line"><span class="comment"># Setting this variable when ZSH_THEME=random will cause zsh to load</span></span><br><span class="line"><span class="comment"># a theme from this variable instead of looking in $ZSH/themes/</span></span><br><span class="line"><span class="comment"># If set to an empty array, this variable will have no effect.</span></span><br><span class="line"><span class="comment"># ZSH_THEME_RANDOM_CANDIDATES=( &quot;robbyrussell&quot; &quot;agnoster&quot; )</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to use case-sensitive completion.</span></span><br><span class="line"><span class="comment"># CASE_SENSITIVE=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to use hyphen-insensitive completion.</span></span><br><span class="line"><span class="comment"># Case-sensitive completion must be off. _ and - will be interchangeable.</span></span><br><span class="line"><span class="comment"># HYPHEN_INSENSITIVE=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to disable bi-weekly auto-update checks.</span></span><br><span class="line"><span class="comment"># DISABLE_AUTO_UPDATE=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to automatically update without prompting.</span></span><br><span class="line"><span class="comment"># DISABLE_UPDATE_PROMPT=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to change how often to auto-update (in days).</span></span><br><span class="line"><span class="comment"># export UPDATE_ZSH_DAYS=13</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line if pasting URLs and other text is messed up.</span></span><br><span class="line"><span class="comment"># DISABLE_MAGIC_FUNCTIONS=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to disable colors in ls.</span></span><br><span class="line"><span class="comment"># DISABLE_LS_COLORS=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to disable auto-setting terminal title.</span></span><br><span class="line"><span class="comment"># DISABLE_AUTO_TITLE=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to enable command auto-correction.</span></span><br><span class="line"><span class="comment"># ENABLE_CORRECTION=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line to display red dots whilst waiting for completion.</span></span><br><span class="line"><span class="comment"># COMPLETION_WAITING_DOTS=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line if you want to disable marking untracked files</span></span><br><span class="line"><span class="comment"># under VCS as dirty. This makes repository status check for large repositories</span></span><br><span class="line"><span class="comment"># much, much faster.</span></span><br><span class="line"><span class="comment"># DISABLE_UNTRACKED_FILES_DIRTY=&quot;true&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Uncomment the following line if you want to change the command execution time</span></span><br><span class="line"><span class="comment"># stamp shown in the history command output.</span></span><br><span class="line"><span class="comment"># You can set one of the optional three formats:</span></span><br><span class="line"><span class="comment"># &quot;mm/dd/yyyy&quot;|&quot;dd.mm.yyyy&quot;|&quot;yyyy-mm-dd&quot;</span></span><br><span class="line"><span class="comment"># or set a custom format using the strftime function format specifications,</span></span><br><span class="line"><span class="comment"># see &#x27;man strftime&#x27; for details.</span></span><br><span class="line"><span class="comment"># HIST_STAMPS=&quot;mm/dd/yyyy&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Would you like to use another custom folder than $ZSH/custom?</span></span><br><span class="line"><span class="comment"># ZSH_CUSTOM=/path/to/new-custom-folder</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Which plugins would you like to load?</span></span><br><span class="line"><span class="comment"># Standard plugins can be found in $ZSH/plugins/</span></span><br><span class="line"><span class="comment"># Custom plugins may be added to $ZSH_CUSTOM/plugins/</span></span><br><span class="line"><span class="comment"># Example format: plugins=(rails git textmate ruby lighthouse)</span></span><br><span class="line"><span class="comment"># Add wisely, as too many plugins slow down shell startup.</span></span><br><span class="line">plugins=(git zsh-syntax-highlighting zsh-autosuggestions)</span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> <span class="variable">$ZSH</span>/oh-my-zsh.sh</span><br><span class="line"><span class="built_in">bindkey</span> <span class="string">&#x27;,&#x27;</span> autosuggest-accept</span><br><span class="line"></span><br><span class="line"><span class="comment"># User configuration</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># export MANPATH=&quot;/usr/local/man:$MANPATH&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># You may need to manually set your language environment</span></span><br><span class="line"><span class="comment"># export LANG=en_US.UTF-8</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Preferred editor for local and remote sessions</span></span><br><span class="line"><span class="comment"># if [[ -n $SSH_CONNECTION ]]; then</span></span><br><span class="line"><span class="comment">#   export EDITOR=&#x27;vim&#x27;</span></span><br><span class="line"><span class="comment"># else</span></span><br><span class="line"><span class="comment">#   export EDITOR=&#x27;mvim&#x27;</span></span><br><span class="line"><span class="comment"># fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Compilation flags</span></span><br><span class="line"><span class="comment"># export ARCHFLAGS=&quot;-arch x86_64&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set personal aliases, overriding those provided by oh-my-zsh libs,</span></span><br><span class="line"><span class="comment"># plugins, and themes. Aliases can be placed here, though oh-my-zsh</span></span><br><span class="line"><span class="comment"># users are encouraged to define aliases within the ZSH_CUSTOM folder.</span></span><br><span class="line"><span class="comment"># For a full list of active aliases, run `alias`.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Example aliases</span></span><br><span class="line"><span class="comment"># alias zshconfig=&quot;mate ~/.zshrc&quot;</span></span><br><span class="line"><span class="comment"># alias ohmyzsh=&quot;mate ~/.oh-my-zsh&quot;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>配置</category>
-      </categories>
-      <tags>
-        <tag>macOS</tag>
-        <tag>终端</tag>
       </tags>
   </entry>
   <entry>
