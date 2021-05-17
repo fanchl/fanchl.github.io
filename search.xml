@@ -20,6 +20,20 @@
       </tags>
   </entry>
   <entry>
+    <title>Git 配置</title>
+    <url>/2020/03/16/Git-%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<h2 id="配置信息位置"><a href="#配置信息位置" class="headerlink" title="配置信息位置"></a>配置信息位置</h2><p><code>~/.gitconfig</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置git全局代理</span></span><br><span class="line">[http <span class="string">&quot;https://github.com&quot;</span>]</span><br><span class="line">	proxy = socks5://127.0.0.1:7890</span><br><span class="line">[user]</span><br><span class="line">	name = xxxxx</span><br><span class="line">	email = xxxxx</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+]]></content>
+      <categories>
+        <category>配置</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Bash 技巧</title>
     <url>/2020/12/27/Bash-%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<h2 id="模式扩展"><a href="#模式扩展" class="headerlink" title="模式扩展"></a>模式扩展</h2><h3 id="子命令扩展"><a href="#子命令扩展" class="headerlink" title="子命令扩展"></a>子命令扩展</h3><ol>
@@ -177,20 +191,6 @@
 ]]></content>
       <tags>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Git 配置</title>
-    <url>/2020/03/16/Git-%E9%85%8D%E7%BD%AE/</url>
-    <content><![CDATA[<h2 id="配置信息位置"><a href="#配置信息位置" class="headerlink" title="配置信息位置"></a>配置信息位置</h2><p><code>~/.gitconfig</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 配置git全局代理</span></span><br><span class="line">[http <span class="string">&quot;https://github.com&quot;</span>]</span><br><span class="line">	proxy = socks5://127.0.0.1:7890</span><br><span class="line">[user]</span><br><span class="line">	name = xxxxx</span><br><span class="line">	email = xxxxx</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-]]></content>
-      <categories>
-        <category>配置</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
